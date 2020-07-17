@@ -10,7 +10,7 @@ $container = $app->getContainer();
 // Twig
 $container['view'] = function ($c) {
     $settings = $c->get('settings');
-    $view = new Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
+    $view = new \Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
 
     // Add extensions
     $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
@@ -21,26 +21,41 @@ $container['view'] = function ($c) {
 
 // Flash messages
 $container['flash'] = function ($c) {
-    return new Slim\Flash\Messages;
+    return new \Slim\Flash\Messages;
 };
 
 // -----------------------------------------------------------------------------
 // Service factories
 // -----------------------------------------------------------------------------
 
+// doctrine EntityManager
+$container['em'] = function ($c) {
+    $settings = $c->get('settings');
+    $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration(
+        $settings['doctrine']['meta']['entity_path'],
+        $settings['doctrine']['meta']['auto_generate_proxies'],
+        $settings['doctrine']['meta']['proxy_dir'],
+        $settings['doctrine']['meta']['cache'],
+        false
+    );
+    return \Doctrine\ORM\EntityManager::create($settings['doctrine']['connection'], $config);
+};
+
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings');
-    $logger = new Monolog\Logger($settings['logger']['name']);
-    $logger->pushProcessor(new Monolog\Processor\UidProcessor());
-    $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['logger']['path'], Monolog\Logger::DEBUG));
+    $logger = new \Monolog\Logger($settings['logger']['name']);
+    $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
+    $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['logger']['path'], \Monolog\Logger::DEBUG));
     return $logger;
 };
 
+$container['view']['user'] = \App\Lib\Session::get('user');
+
 // -----------------------------------------------------------------------------
-// Action factories
+// Controller factories
 // -----------------------------------------------------------------------------
 
-$container[App\Action\HomeAction::class] = function ($c) {
-    return new App\Action\HomeAction($c->get('view'), $c->get('logger'));
-};
+//$container['App\Controller\LoginController'] = function ($c) {
+//    return new App\Controller\LoginController($c);
+//};

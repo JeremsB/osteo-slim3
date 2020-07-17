@@ -1,0 +1,117 @@
+{% extends 'base.twig' %}
+{% block content %}
+    <br>
+    <div style="text-align: center;" class="table-responsive" id="div">
+        Nombre de clients : {{ nbClient }}
+        <br />
+        <strong>Total des participants : {{ nbClient + nbAccompagnant }}</strong>
+        <!--<br />
+        Jauge à atteindre : 100
+        <br />-->
+        <table class="table" id="example">
+            <thead style="font-size: 14px;">
+                <tr>
+                    <th>Civ</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Entreprise</th>
+                    <th>Fonction</th>
+                    <th><abbr title="Secteur d'activité">Sect. activité</abbr></th>
+                    <th>Participe</th>
+                    <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+                </tr>
+            </thead>
+            <tbody style="font-size: 14px;">
+            {% for invite in invites%}
+                <tr {% if invite.getReponse().suppr %}class="table-active"{% endif %}>
+                    <td>{%  if invite.civ == "M" %}
+                            M.
+                        {% elseif invite.civ == "MME" %}
+                            Mme
+                        {% else %}
+                            Mlle
+                        {% endif %}
+                    </td>
+                    <td>{{ invite.nom }}</td>
+                    <td>{{ invite.prenom }}</td>
+                    <td>{{ invite.email }}</td>
+                    <td>{{ invite.telPortable }}</td>
+                    <td>{{ invite.entreprise }}</td>
+                    <td>{{ invite.fonction }}</td>
+                    <td>{{ invite.secteurActivite }}</td>
+                    <td style="text-align: center">
+                        {%  if invite.getReponse().participe is null %}
+                            {{ invite.getReponse().participe }}
+                            <span class="icon has-text-info">
+                                    <i class="fas fa-question"></i>
+                                </span>
+                        {% else %}
+                            {%  if invite.getReponse().participe == 1 %}
+                                <span class="icon has-text-success">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            {% else %}
+                                <span class="icon has-text-danger">
+                                    <i class="fas fa-ban"></i>
+                                </span>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href='{{ path_for('getInvite', { 'id': invite.invitesId}) }}'>
+                            <abbr title="Modifier">
+                                <span class="icon has-text-info">
+                                    <i class="fas fa-edit"></i>
+                                </span>
+                            </abbr>
+                        </a>
+                        <a href='{{ path_for('suppInvite', { 'id': invite.invitesId}) }}' style="color : inherit;text-decoration: none">
+                            <abbr title="Supprimer">
+                                <span class="icon has-text-danger">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </abbr>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block js %}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                language: {
+                    processing: "Traitement en cours...",
+                    search: "Recherche rapide&nbsp;:",
+                    lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+                    info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                    infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+                    infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                    infoPostFix: "",
+                    loadingRecords: "Chargement en cours...",
+                    zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                    emptyTable: "Aucune donnée disponible dans le tableau",
+                    paginate: {
+                        first: "Premier",
+                        previous: "Pr&eacute;c&eacute;dent",
+                        next: "Suivant",
+                        last: "Dernier"
+                    },
+                    aria: {
+                        sortAscending: ": activer pour trier la colonne par ordre croissant",
+                        sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                    }
+                },
+                "columnDefs": [
+                    { "orderable": false, "targets": 11 },
+                    { "orderable": false, "targets": 10 }
+                ]
+            });
+        } );
+    </script>
+{% endblock %}

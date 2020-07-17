@@ -13,13 +13,20 @@
     ],
     "autoload": {
         "psr-4": {
-            "App\\": "app/src"
+            "App\\Controller\\": "app/src/controllers",
+            "App\\Model\\": "app/src/models",
+            "App\\Dao\\": "app/src/dao",
+            "App\\Lib\\": "app/src/tools",
+            "App\\Middleware\\": "app/src/middleware"
         }
     },
     "require": {
-        "slim/slim": "^3.0",
+        "slim/slim": "~3.0",
         "slim/twig-view": "^2.0",
         "slim/flash": "^0.1.0",
-        "monolog/monolog": "^1.13"
+        "monolog/monolog": "^1.17",
+        "doctrine/orm": "2.5.*",
+        "spipu/html2pdf": "^5.1",
+        "phpmailer/phpmailer": "^6.0"
     }
 }

@@ -1,0 +1,25 @@
+{% extends 'base.twig' %}
+{% block content %}
+    <div style="text-align: center">
+        <br>
+        <form action="{{ path_for('checkLogin') }}" method="post">
+            <h2 style="color: #3498db"> Veuillez entrer vos identifiants</h2>
+            <br>
+            <div class="columns is-mobile">
+                <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile">
+                    <input type="text" name="login" class="input" placeholder="Login">
+                    <br>
+                    <br>
+                    <input type="password" name="password" class="input" placeholder="Password">
+                </div>
+            </div>
+            <br>
+            <button class="button is-link is-rounded" type="submit">Connexion</button>
+            <br>
+            <br>
+            {% if message %}
+                <p style="color: #e67e22"> {{ message }}</p>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

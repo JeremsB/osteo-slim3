@@ -1,0 +1,35 @@
+<div class="columns is-mobile">
+    <div class="column" style="text-align: left;margin-left: 50px;margin-top: 15px">
+        <img src='{{ base_url() }}/img/LOGO_ACEF_Cotes_Armor_2.png' width="120">
+    </div>
+    <div class="column" style="text-align: center;margin-top: 50px">
+        <h1 style="color: #06A6C1;font-size:25px;text-transform: uppercase">Soirée <strong style="color: #06A6C1">Fonction Publique</strong> <br/>Jeudi 31 Mai 2018 à 18h30</h1>
+    </div>
+    <div class="column" style="text-align: right;margin-right: 40px;">
+        <img src='{{ base_url() }}/img/BP_Grand_Ouest_D.png' width="300" height="1000">
+    </div>
+</div>
+
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #264697;min-height: 25px;justify-content: center;color: white;font-size: 14px;">
+    {% if user %}
+        <a href="{{ path_for('invite') }}" style="color: white">
+            Listing global des invités
+        </a>
+            &nbsp &nbsp|&nbsp &nbsp
+        <a href="{{ path_for('participant') }}" style="color: white">
+            Listing des participants
+        </a>
+        &nbsp &nbsp|&nbsp &nbsp
+        <a href="{{ path_for('refus') }}" style="color: white">
+            Listing des refus
+        </a>
+        &nbsp &nbsp|&nbsp &nbsp
+        <a href="{{ path_for('ajoutInvite') }}" style="color: white">
+            Ajouter un invité
+        </a>
+            &nbsp &nbsp|&nbsp &nbsp
+        <a href="{{ path_for('login') }}" style="color: #FF6A08">
+            <strong>Déconnexion</strong>
+        </a>
+    {% endif %}
+</nav>

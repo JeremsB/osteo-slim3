@@ -1,0 +1,22 @@
+body {
+    background-color: #0E3885;
+}
+h1{
+    color:#06A6C1;font-size: 50px
+}
+.separator{
+    margin:auto;
+    width:460px;
+}
+@media screen and (max-width: 640px) {
+    .separator{
+        margin:auto;
+        width:350px;
+    }
+}
+@media screen and (max-width: 540px) {
+    .separator {
+        margin: auto;
+        width: 300px;
+    }
+}
