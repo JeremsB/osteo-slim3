@@ -54,4 +54,8 @@ final class ToolsController extends BaseController
         $this->view->render($response, 'complet.twig');
         return $response;
     }
+    public function mail(Request $request, Response $response, $args){
+        $this->view->render($response, 'email.html');
+        return $response;
+    }
 }

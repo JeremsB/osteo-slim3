@@ -12,6 +12,7 @@ $app->get('/testMailDoro', 'App\Controller\ToolsController:testMailDoro')->setNa
 $app->get('/testMailMagni', 'App\Controller\ToolsController:testMailMagni')->setName('testMailMagni');
 $app->get('/testConfirme', 'App\Controller\ToolsController:testConfirme')->setName('testConfirme');
 $app->get('/testRefus', 'App\Controller\ToolsController:testRefus')->setName('testRefus');
+$app->get('/mail', 'App\Controller\ToolsController:mail')->setName('mail');
 
 $app->group('/secure', function () {
     $this->get('/invite', 'App\Controller\InviteController:invite')->setName('invite');

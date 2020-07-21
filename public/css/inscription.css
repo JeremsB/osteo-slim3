@@ -1,13 +1,22 @@
 body {
-    background-color: #0E3885;
+    /*background-color: #0E3885;*/
 }
 h1{
-    color:#06A6C1;font-size: 50px
+    color:white;
+    font-size: 50px;
 }
 .separator{
     margin:auto;
     width:460px;
 }
+
+form .input {
+    border-radius: 0;
+}
+form .input::placeholder {
+    color: #23237C;
+}
+
 @media screen and (max-width: 640px) {
     .separator{
         margin:auto;

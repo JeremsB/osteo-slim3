@@ -10,6 +10,7 @@ namespace App\Dao;
 
 
 use App\Model\AgepReponses;
+use App\Model\JoReponses;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\Query\ResultSetMapping;
@@ -70,9 +71,9 @@ class InviteDao
         $invites = $this->em->getRepository('App\Model\JoInvites')->findAll();
         $arrayInvite = [];
         foreach ($invites as $invite){
-            if(!is_null($invite->getReponse())){
-                if(!($invite->getReponse()->getParticipe())) {
-                    if(!($invite->getReponse()->getSuppr()))
+            if(!is_null($invite->getReponse())){ //Si l'invité a répondu
+                if(!($invite->getReponse()->getParticipe())) { //Si l'invité ne participe pas
+                    if(!($invite->getReponse()->getSuppr())) //Si l'invité n'a pas été supprimé
                     $arrayInvite[] = $invite;
                 }
             }
@@ -87,7 +88,7 @@ class InviteDao
         if($reponse){
             $reponse->setSuppr(true);
         }else{
-            $reponse = new AgepReponses();
+            $reponse = new JoReponses();
             $reponse->setInvites($invite);
             $reponse->setSuppr(true);
             $this->em->persist($reponse);

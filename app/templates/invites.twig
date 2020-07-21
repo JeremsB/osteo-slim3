@@ -2,12 +2,9 @@
 {% block content %}
     <br>
     <div style="text-align: center;" class="table-responsive" id="div">
-        Nombre de clients : {{ nbClient }}
+        {% if nbInvites %}Nombre d'invités : {{ nbInvites }} / {% endif %}Nombre de participants : {{ nbParticipants }}
         <br />
-        <strong>Total des participants : {{ nbClient + nbAccompagnant }}</strong>
-        <!--<br />
-        Jauge à atteindre : 100
-        <br />-->
+
         <table class="table" id="example">
             <thead style="font-size: 14px;">
                 <tr>

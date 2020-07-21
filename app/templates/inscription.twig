@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>BPGO ACEF</title>
+    <title>BPGO Entreprendre 2024</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {#<link rel="icon" type="image/png" href="https://assets.oneweb.mercedes-benz.com/global/1.9.0/favicon/favicon-32x32.png" />#}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
@@ -12,37 +12,68 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<br>
-<br>
 <div class="columns is-mobile">
     <div class="column is-8-desktop is-offset-2-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile" style="background-color: white;border-radius: 40px;">
-            <div style="background-color: white;width: 97%;margin: auto;">
-                <div style="text-align: center;">
-                    <h1>SOIRÉE <strong style="color:#06A6C1">FONCTION PUBLIQUE</strong></h1>
-                    <br>
-                    <div class="columns is-mobile">
-                        <div class="column is-6-desktop is-offset-3-desktop is-8-tablet is-offset-2-tablet is-10-mobile is-offset-1-mobile">
-                            <img src='{{ base_url() }}/img/separator.png'>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="columns is-mobile">
-                        <div class="column is-6-desktop is-offset-3-desktop is-8-tablet is-offset-2-tablet is-10-mobile is-offset-1-mobile">
-                        <h2 style="background-color: #06A6C1;padding: 10px">
-                            <span style="font-size: 25px"><strong style="color: #ffffff;text-transform: uppercase;">Jeudi 31 mai 2018 à 18h30</strong></span>
-                        </h2>
-                        </div>
-                    </div>
-                    <p style="margin-top: -15px;"><strong style="color:#0E3885">Centre de vacances ANAS - Tréveneuc</strong></p>
+            <div style="background-color: #23237C; width: 97%; margin: auto;">
+                <div style="width: 100%">
+                    <img src='{{ base_url() }}/img/image.jpg' style="width: 100%">
+                </div>
+                <div style="text-align: center;background-color: #23237C;">
+                    <h1><strong style="color:white;">INSCRIPTION</strong></h1>
+
                     <br />
-                    <h1 style="font-size: 35px"><strong style="color:#06A6C1">INSCRIPTION</strong></h1>
+
+                    <div class="columns is-mobile">
+                        <div class="column is-10 is-offset-1">
+                            <h2 style="font-size: 20px; text-align: justify"><strong style="color: white;">LES JEUX OLYMPIQUES ET PARALYMPIQUES DE PARIS 2024
+                                    DES OPPORTUNITÉS DE DÉVELOPPEMENT EN RÉGION.
+                                    PRÉPAREZ-VOUS DÈS MAINTENANT !</strong></h2>
+                        </div>
+                    </div>
+
+                    <div class="columns is-mobile">
+                        <div class="column is-10 is-offset-1">
+                            <div style="color: white; text-align: left;">
+                                <p>Dans le cadre du partenariat entre le groupe BPCE et les Jeux de Paris 2024, la
+                                Banque Populaire Grand Ouest organise une journée dédiée aux Jeux Olympiques
+                                    et Paralympiques de Paris 2024.</p>
+                                <p>Des centaines d’appels d’offres vont être lancées jusqu’en 2024 dans de nombreux
+                                secteurs d’activité (bâtiment, restauration, tourisme et organisation, sécurité,
+                                    prestations intellectuelles, mobilité…).</p>
+                                <p>Venez découvrir les opportunités commerciales pour votre entreprise, les
+                                modalités de participation aux appels d'offre et les dispositifs d’accompagnement
+                                    prévus.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 style="font-size: 35px"><strong style="color: white;">AU PROGRAMME</strong></h1>
+
+                    <div class="columns is-mobile">
+                        <div class="column is-10 is-offset-1">
+                            <div style="color: white; text-align: left;">
+                            <br>
+                            <h5>16h 17h30 : Conférence « Les jeux de Paris 2024 : des opportunités économiques
+                                à saisir »</h5>
+                            <h5>Intervenants :</h5>
+                            <h5>Marie Barsacq - Directrice Impact et Héritage au Comité d’Organisation de Paris
+                                2024 et Christophe Divi - Directeur ESS 2024</h5>
+                            <h5>Fabienne Kerzhero - Directrice ADIE Grand Ouest, XXX – Directeur MEDEF35,
+                                XXXX – Directrice CCI 35 ….</h5>
+                            <h5>17h30 – 18h30 : Tables Rondes avec nos partenaires</h5>
+                            <br />
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 style="font-size: 35px"><strong style="color: white;">INSCRIPTION</strong></h1>
                     <br>
                     <form action="{{ path_for('inscriptio') }}" method="post">
                         <input type="hidden"  name="hash" value="{{ invite.hash }}">
                         <div class="columns is-mobile">
                             <div class="column is-10 is-offset-1">
                                 <div class="columns">
-                                    <div class="column is-12-mobile">
+                                    <div class="column is-12-mobile form">
                                         <div class="field">
                                             <div class="control">
                                                 <input class="input" type="text" placeholder="CIVILITÉ" name="civ" value="{{ invite.civ }}" readonly="readonly">
@@ -95,20 +126,20 @@
                             <div class="column is-10 is-offset-1">
                                 <div class="columns is-mobile">
                                     <div class="column">
-                                        <h2 class="label" style="text-align: left;color:#0E3885">Êtes-vous client à la Banque Populaire Grand Ouest ?*</h2>
+                                        <h2 class="label" style="text-align: left;color:white">Êtes-vous client à la Banque Populaire Grand Ouest ?*</h2>
                                     </div>
                                     <div class="column">
                                         <div class="field-body">
                                             <div class="field">
                                                 <p class="control">
-                                                    <label class="checkbox" style="vertical-align: bottom;color:#0E3885">
+                                                    <label class="checkbox" style="vertical-align: bottom;color:white">
                                                         <input type="radio" id="btnOui" name="client" value="1" checked/>
                                                         Oui
                                                     </label>
                                                     &nbsp
                                                     &nbsp
                                                     &nbsp
-                                                    <label class="checkbox" style="vertical-align: bottom;color:#0E3885">
+                                                    <label class="checkbox" style="vertical-align: bottom;color:white">
                                                         <input type="radio" id="btnNon" name="client" value="0"/>
                                                         Non
                                                     </label>
@@ -120,21 +151,21 @@
 
                                 <div class="columns is-mobile">
                                     <div class="column">
-                                        <h2 class="label" style="text-align: left;color:#0E3885">Je ne participerai pas mais je souhaite
+                                        <h2 class="label" style="text-align: left;color:white">Je ne participerai pas mais je souhaite
                                             recevoir le lien de la conférence* :</h2>
                                     </div>
                                     <div class="column">
                                         <div class="field-body">
                                             <div class="field">
                                                 <p class="control">
-                                                    <label class="checkbox" style="vertical-align: bottom;color:#0E3885">
+                                                    <label class="checkbox" style="vertical-align: bottom;color:white">
                                                         <input type="radio" id="btnOui" name="lienConf" value="1" checked/>
                                                         Oui
                                                     </label>
                                                     &nbsp
                                                     &nbsp
                                                     &nbsp
-                                                    <label class="checkbox" style="vertical-align: bottom;color:#0E3885">
+                                                    <label class="checkbox" style="vertical-align: bottom;color:white">
                                                         <input type="radio" id="btnNon" name="lienConf" value="0"/>
                                                         Non
                                                     </label>
@@ -146,20 +177,20 @@
 
                                 <div class="columns is-mobile">
                                     <div class="column">
-                                        <h2 class="label" style="text-align: left;color:#0E3885">Je participe à la Conférence* :</h2>
+                                        <h2 class="label" style="text-align: left;color:white">Je participe à la Conférence* :</h2>
                                     </div>
                                     <div class="column">
                                         <div class="field-body">
                                             <div class="field">
                                                 <p class="control">
-                                                    <label class="checkbox" style="vertical-align: bottom;color:#0E3885">
+                                                    <label class="checkbox" style="vertical-align: bottom;color:white">
                                                         <input type="radio" id="btnOui" name="participe" value="1" checked/>
                                                         Oui
                                                     </label>
                                                     &nbsp
                                                     &nbsp
                                                     &nbsp
-                                                    <label class="checkbox" style="vertical-align: bottom;color:#0E3885">
+                                                    <label class="checkbox" style="vertical-align: bottom;color:white">
                                                         <input type="radio" id="btnNon" name="participe" value="0"/>
                                                         Non
                                                     </label>
@@ -171,13 +202,35 @@
 
                             </div>
                         </div>
+                        <div class="columns is-mobile">
+                            <div class="column is-10 is-offset-1">
+                            <p style="text-align: left; color: white;  font-style: italic;">*En cochant cette case et en saisissant vos coordonnées, vous nous autorisez à les transmettre aux plateformes d'appels d'offres
+                                Entreprises 2024 et ESS2024 afin que celles-ci puissent vous contacter pour vous guider dans l’inscription aux plateformes d’appels
+                                d’offres liés aux Jeux de Paris 2024, et dans ce but uniquement.</p>
+                            </div>
+                        </div>
                         <br />
                         <div class="columns is-mobile">
                             <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile">
-                                <button type="submit" style="border:none;background-color: #FF6A08;font-size: 30px;width: 100%;padding: 10px 0px"><strong style="color:#ffffff">JE M'INSCRIS</strong></button>
+                                <button type="submit" style="border:none;border-radius: 15px;background-color: #B90000;font-size: 30px;width: 60%;padding: 10px 0px"><strong style="color:#ffffff">VALIDATION</strong></button>
                             </div>
                         </div>
                     </form>
+
+                    <div class="columns is-mobile">
+                        <div class="column is-10 is-offset-1">
+                            <div style="color: white; text-align: left;">
+                                <br>
+                                <h4>En attendant de participer à ces différents évènements, vous pouvez d’ores et déjà
+                                    consulter :</h4>
+                                <br />
+                            </div>
+
+                            <a href="#"><h1 style="font-size: 18px; color: white; text-decoration: underline">Le guide pratique des entreprises</h1></a>
+                            <a href="#"><h1 style="font-size: 18px; color: white; text-decoration: underline">Notre page Internet dédiée</h1></a>
+                        </div>
+                    </div>
+
                     <br />
                     <div class="columns is-mobile">
                         <div class="column" style="text-align: left;margin-left: 50px;margin-top: 15px">
@@ -193,39 +246,15 @@
                         </div>
                     </div>
                     <br />
-                    <div class="column is-10 is-offset-1">
-                        <div class="columns" style="text-align: justify;font-size: 11px;color:#949599">
-                    <p>Cet événement peut faire l'objet de prises de vues photographiques et/ou vidéos
-                        susceptibles d'être diffusées au public dans le cadre de la promotion de l'événement
-                        proposée par la Banque Populaire Grand Ouest et l'ACEF et ce pour une durée indéterminée.
-                        En participant à l'événement, vous acceptez d'être photographié(e) et/ou filmé(e).
-                        Si malgré tout vous ne souhaitiez pas être photographié(e) et/ou filmé(e), nous
-                        vous remercions de l'indiquer à l'un des représentants de la Banque Populaire
-                        Grand Ouest ou de l'ACEF présents sur les lieux.
-                        <br />Les données à caractère personnel demandées sont obligatoires pour l'organisation
-                        de l'événement et font l'objet d'un traitement notamment informatisé par la Banque
-                        Populaire Grand Ouest. A défaut de communication de ces données, votre participation
-                        ne pourrait être prise en compte. Les données recueillies sont également utilisées
-                        par Banque Populaire Grand Ouest pour réaliser des actions de démarchage commercial.
-                        <br/> Les données à caractère personnel sont conservées pendant une durée maximale
-                        de 3 ans et sont exclusivement destinées à la Banque Populaire Grand Ouest, responsable
-                        du traitement. Conformément au règlement général sur la protection des données
-                        à caractère personnel du 27 avril 2016, tout participant dispose d’un droit d'accès,
-                        de rectification, d’opposition, d’effacement et de limitation aux données le
-                        concernant en s’adressant par écrit au Service Relations Clients de la Banque
-                        Populaire Grand Ouest 15 boulevard de la Boutière – CS 26858 35768 Saint-Grégoire
-                        cedex, ou par e-mail adressé à BPGO_SERVICE_RECLAMATIONS_CLIENTS@bpgo.fr.
-                        <br /> Vous disposez également d’un droit d’introduire une réclamation auprès d’une
-                        autorité de contrôle en charge de la protection des personnes physiques à l’égard
-                        du traitement des données à caractère personnel. En France, l’autorité de contrôle
-                        est la Commission Nationale de l’Informatique et des Libertés (CNIL) 3 Place
-                        de Fontenoy TSA 80715 75334 PARIS Cedex 07. Vous êtes informé que vous disposez
-                        du droit à vous inscrire sur une liste d’opposition au démarchage téléphonique.
-                        Toutefois, malgré cette inscription, vous pouvez être démarché par téléphone
-                        dès lors qu’il existe des relations contractuelles pré-existantes.</p>
-                        </div>
-                    </div>
                     <br />
+                </div>
+            </div>
+
+            <div class="column is-10 is-offset-1">
+                <div style="text-align: center;font-size: 13px;color:#949599">
+                    <p>Banque Populaire Grand Ouest - Société Anonyme Coopérative de Banque Populaire à capital variable
+                        <br />Siège social : 15 boulevard de la Boutière - CS 26858 - 35768 Saint Grégoire cedex
+                        <br />857 500 227 RCS Rennes. Banque Populaire Grand Ouest exploite la marque Crédit Maritime.</p>
                 </div>
             </div>
     </div>

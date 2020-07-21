@@ -1,5 +1,6 @@
 <?php
 namespace App\Dao;
+use App\Model\JoInvites;
 use App\Model\JoReponses;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NonUniqueResultException;
@@ -28,15 +29,22 @@ class ReponseDao
                 ->getQuery()
                 ->getSingleScalarResult();
     }
-    /*public function countAccompagnant(){
+    public function countInvitesNoResponse(){
             return $this->em->createQueryBuilder()
-                ->select('COUNT(r.accompagnantNom)')
-                ->from(JoReponses::class,'r')
-                ->where('r.present = 1')
-                ->andWhere('r.suppr IS NULL')
-                ->andWhere("r.accompagnantNom <> ''")
+                ->select('COUNT(i.invitesId)')
+                ->from(JoInvites::class,'i')
+                ->where('i.reponse IS NULL')
                 ->getQuery()
                 ->getSingleScalarResult();
-    }*/
+    }
+    public function countInvitesResponse(){
+            return $this->em->createQueryBuilder()
+                ->select('COUNT(r.reponseId)')
+                ->from(JoReponses::class,'r')
+                //->where('r.suppr != 1')
+                ->where('r.suppr IS NULL')
+                ->getQuery()
+                ->getSingleScalarResult();
+    }
 
 }

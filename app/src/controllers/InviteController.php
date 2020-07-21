@@ -32,11 +32,6 @@ class InviteController extends BaseController
     }
     public function dispatchInscription(Request $request, Response $response, $args)
     {
-        $nbPresent = $this->reponseDao->countPresent();
-        /*$nbAccompagnant = $this->reponseDao->countAccompagnant();
-        if($nbPresent + $nbAccompagnant >= 100) {
-            $this->view->render($response, 'complet.twig');
-        }else{*/
             $id = $args["id"];
             $invite = $this->inviteDao->getInvitesByHash($id);
             if($invite){
@@ -44,16 +39,12 @@ class InviteController extends BaseController
             } else {
                 $this->view->render($response, '404.twig',['invite' => $invite]);
             }
-        //}
         return $response;
     }
     public function inscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-        /*$nbAccompagnant = $this->reponseDao->countAccompagnant();
-        if($nbPresent + $nbAccompagnant >= 100){
-            $this->view->render($response, 'complet.twig');
-        } else {*/
+
             $invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
             $invite->setEmail($request->getParam('email'));
             $invite->setTelPortable($request->getParam('tel'));
@@ -67,7 +58,6 @@ class InviteController extends BaseController
             if(!$reponse) {
                 $reponse = new JoReponses();
             }
-            //$reponse->setPresent(true);
             $reponse->setInvites($invite);
             $reponse->setParticipe($request->getParam('participe'));
             $reponse->setLienConf($request->getParam('lienConf'));
@@ -77,25 +67,26 @@ class InviteController extends BaseController
             $reponse = $this->inviteDao->saveReponse($reponse);
             $invite->setReponse($reponse);
             $this->inviteDao->saveInvite($invite);
-            //$mailSend = new MailSend();
-            //$mailSend->sendMail($invite->getEmail(),$invite,'jeremy.balcon@sotiaf.fr','Jeremy*35136');
+
             $this->view->render($response, 'confirme.twig');
-        //}
+
         return $response;
     }
     public function invite(Request $request, Response $response, $args)
     {
         $list = $this->inviteDao->getInvites();
-        //$nbPresent = $this->reponseDao->countPresent();
-        $this->view->render($response, 'invites.twig',['invites' => $list/*,'nbClient'=> $nbPresent,'nbAccompagnant' => $nbAccompagnant*/]);
+        $nbParticipants = $this->reponseDao->countPresent();
+        $nbInvitesNr = $this->reponseDao->countInvitesNoResponse();
+        $nbInvitesR = $this->reponseDao->countInvitesResponse();
+        $nbInvites = $nbInvitesNr + $nbInvitesR;
+        $this->view->render($response, 'invites.twig',['invites' => $list,'nbInvites'=> $nbInvites, 'nbParticipants' => $nbParticipants]);
         return $response;
     }
     public function participant(Request $request, Response $response, $args)
     {
         $list = $this->inviteDao->getParticipant();
-        $nbPresent = $this->reponseDao->countPresent();
-        //$nbAccompagnant = $this->reponseDao->countAccompagnant();
-        $this->view->render($response, 'invites.twig',['invites' => $list,'nbClient'=> $nbPresent]);
+        $nbParticipants = $this->reponseDao->countPresent();
+        $this->view->render($response, 'invites.twig',['invites' => $list, 'nbParticipants' => $nbParticipants]);
         return $response;
     }
     public function refus(Request $request, Response $response, $args)
@@ -118,8 +109,7 @@ class InviteController extends BaseController
 
     public function ajoutInvite(Request $request, Response $response, $args){
         $joInvite = null;
-        $present = $request->getParam('btnPresent');
-        $accompagne = $request->getParam('btnAccompagne');
+        $participe = $request->getParam('btnParticipe');
         if($request->getParam('id')){
             $joInvite = $this->inviteDao->getInvitesById($request->getParam('id'));
         }else{
@@ -130,29 +120,21 @@ class InviteController extends BaseController
         $joInvite->setPrenom($request->getParam('prenom'));
         $joInvite->setTelPortable($request->getParam('telMobile'));
         $joInvite->setEmail($request->getParam('email'));
+        $joInvite->setEntreprise($request->getParam('entreprise'));
+        $joInvite->setFonction($request->getParam('fonction'));
+        $joInvite->setSecteurActivite($request->getParam('secteurActivite'));
+        $joInvite->setEstClient($request->getParam('btnClient'));
 
 
         $this->inviteDao->saveInvite($joInvite);
 
-        if($present==1) {
+        if($participe==1) {
             $reponse = $joInvite->getReponse();
             if (!$reponse) {
-                $reponse = new AgepReponses();
+                $reponse = new JoReponses();
             }
-            if($accompagne ==1){
-                $reponse->setAccompagnantCiv($request->getParam('acc_civ'));
-                $reponse->setAccompagnantNom($request->getParam('acc_nom'));
-                $reponse->setAccompagnantPrenom($request->getParam('acc_prenom'));
-                $reponse->setAccompagnantVille($request->getParam('acc_ville'));
-                $reponse->setAccompagnantCp($request->getParam('acc_cp'));
-                $reponse->setAccompagnantAdr1($request->getParam('acc_adr1'));
-                $reponse->setAccompagnantAdr2($request->getParam('acc_adr2'));
-                $reponse->setAccompagnantAdr3($request->getParam('acc_adr3'));
-                $reponse->setAccompagnantSociete($request->getParam('acc_societe'));
-                $reponse->setAccompagnantTel($request->getParam('acc_tel'));
-                $reponse->setAccompagnantEmail($request->getParam('acc_email'));
-            }
-            $reponse->setPresent($request->getParam('btnPresent'));
+            $reponse->setParticipe($request->getParam('btnParticipe'));
+            $reponse->setLienConf($request->getParam('btnLinkConf'));
             $reponse->setInvites($joInvite);
 
             $reponse = $this->inviteDao->saveReponse($reponse);
