@@ -1,5 +1,7 @@
 <?php
 
-class Constantes {
+namespace App\Lib;
+
+class Constants {
     const JAUGE = 82;
 }

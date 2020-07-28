@@ -14,6 +14,7 @@ use App\Lib\MailSend;
 use App\Lib\PdfCreator;
 use App\Model\JoInvites;
 use App\Model\JoReponses;
+use App\Lib\Constants;
 use DateTime;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -32,6 +33,10 @@ class InviteController extends BaseController
     }
     public function dispatchInscription(Request $request, Response $response, $args)
     {
+        $nbPresent = $this->reponseDao->countPresent();
+        if($nbPresent >= Constants::JAUGE) { //Créer une constante qqupart
+            $this->view->render($response, 'complet.twig');
+        }else{
             $id = $args["id"];
             $invite = $this->inviteDao->getInvitesByHash($id);
             if($invite){
@@ -39,23 +44,26 @@ class InviteController extends BaseController
             } else {
                 $this->view->render($response, '404.twig',['invite' => $invite]);
             }
+        }
         return $response;
     }
     public function inscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-
+        if($nbPresent >= Constants::JAUGE) { //Créer une constante qqupart
+            $this->view->render($response, 'complet.twig');
+        }else {
             $invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
             $invite->setEmail($request->getParam('email'));
             $invite->setTelPortable($request->getParam('tel'));
             $invite->setEntreprise($request->getParam('entreprise'));
             $invite->setFonction($request->getParam('fonction'));
-            $invite->setSecteurActivite($request->getParam('secteurActivite'));
+            $invite->setCodeNaf($request->getParam('codeNaf'));
             $invite->setEstClient($request->getParam('client'));
             $this->inviteDao->saveInvite($invite);
 
             $reponse = $invite->getReponse();
-            if(!$reponse) {
+            if (!$reponse) {
                 $reponse = new JoReponses();
             }
             $reponse->setInvites($invite);
@@ -68,8 +76,10 @@ class InviteController extends BaseController
             $invite->setReponse($reponse);
             $this->inviteDao->saveInvite($invite);
 
+            $mailSend = new MailSend();
+            $mailSend->sendMail($invite->getEmail(),$invite,'magnificat','magnificat*35830');
             $this->view->render($response, 'confirme.twig');
-
+        }
         return $response;
     }
     public function invite(Request $request, Response $response, $args)
@@ -79,14 +89,14 @@ class InviteController extends BaseController
         $nbInvitesNr = $this->reponseDao->countInvitesNoResponse();
         $nbInvitesR = $this->reponseDao->countInvitesResponse();
         $nbInvites = $nbInvitesNr + $nbInvitesR;
-        $this->view->render($response, 'invites.twig',['invites' => $list,'nbInvites'=> $nbInvites, 'nbParticipants' => $nbParticipants]);
+        $this->view->render($response, 'invites.twig',['invites' => $list,'nbInvites'=> $nbInvites, 'nbParticipants' => $nbParticipants, 'jauge' => Constants::JAUGE]);
         return $response;
     }
     public function participant(Request $request, Response $response, $args)
     {
         $list = $this->inviteDao->getParticipant();
         $nbParticipants = $this->reponseDao->countPresent();
-        $this->view->render($response, 'invites.twig',['invites' => $list, 'nbParticipants' => $nbParticipants]);
+        $this->view->render($response, 'invites.twig',['invites' => $list, 'nbParticipants' => $nbParticipants, 'jauge' => Constants::JAUGE]);
         return $response;
     }
     public function refus(Request $request, Response $response, $args)
@@ -122,11 +132,11 @@ class InviteController extends BaseController
         $joInvite->setEmail($request->getParam('email'));
         $joInvite->setEntreprise($request->getParam('entreprise'));
         $joInvite->setFonction($request->getParam('fonction'));
-        $joInvite->setSecteurActivite($request->getParam('secteurActivite'));
+        $joInvite->setCodeNaf($request->getParam('codeNaf'));
         $joInvite->setEstClient($request->getParam('btnClient'));
 
 
-        $this->inviteDao->saveInvite($joInvite);
+        $this->inviteDao->saveInviteAdmin($joInvite);
 
         if($participe==1) {
             $reponse = $joInvite->getReponse();
@@ -140,7 +150,7 @@ class InviteController extends BaseController
             $reponse = $this->inviteDao->saveReponse($reponse);
             $joInvite->setReponse($reponse);
         }
-            $this->inviteDao->saveInvite($joInvite);
+        $this->inviteDao->saveInviteAdmin($joInvite);
 
         //Envois de mail
         //Configuration du SMTP acces

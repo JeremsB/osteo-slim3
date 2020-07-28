@@ -111,15 +111,31 @@ class InviteDao
         return $accompagnant;
     }
 
-    public function saveInvite($JoInvite){
+    public function saveInviteAdmin($JoInvite){
         try{
             $this->em->persist($JoInvite);
             $this->em->flush();
-            $JoInvite->setHash(md5($JoInvite->getInvitesId()));
+            $hash = hash('whirlpool',$JoInvite->getInvitesId());
+            $JoInvite->setHash($hash);
             $this->em->persist($JoInvite);
             $this->em->flush();
         }catch (\Exception $e){
 
         }
     }
+
+    public function saveInvite($JoInvite){
+        try{
+            $this->em->persist($JoInvite);
+            $this->em->flush();
+        }catch (\Exception $e){
+
+        }
+    }
+/*
+    public function idToHash(){
+        $query = $this->em->createQuery('SELECT INVITES_ID FROM JO_INVITES i');
+        $list = $query->getResult();
+        return $list;
+    }*/
 }

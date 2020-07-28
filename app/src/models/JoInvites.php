@@ -74,9 +74,9 @@ class JoInvites
     /**
      * @var string
      *
-     * @ORM\Column(name="SECTEUR_ACTIVITE", type="string", length=50, nullable=true)
+     * @ORM\Column(name="CODE_NAF", type="string", length=50, nullable=true)
      */
-    private $secteurActivite;
+    private $codeNaf;
 
     /**
      * @var boolean
@@ -288,27 +288,27 @@ class JoInvites
     }
 
     /**
-     * Set secteurActivite
+     * Set codeNaf
      *
-     * @param string $secteurActivite
+     * @param string $codeNaf
      *
      * @return JoInvites
      */
-    public function setSecteurActivite($secteurActivite)
+    public function setCodeNaf($codeNaf)
     {
-        $this->secteurActivite = $secteurActivite;
+        $this->codeNaf = $codeNaf;
 
         return $this;
     }
 
     /**
-     * Get secteurActivite
+     * Get codeNaf
      *
      * @return string
      */
-    public function getSecteurActivite()
+    public function getCodeNaf()
     {
-        return $this->secteurActivite;
+        return $this->codeNaf;
     }
 
     /**

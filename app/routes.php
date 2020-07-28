@@ -5,7 +5,7 @@ $app->get('/', 'App\Controller\LoginController:dispatch')
     ->setName('login');
 $app->post('/', 'App\Controller\LoginController:login')
     ->setName('checkLogin');
-$app->get('/pdf/{id}', 'App\Controller\ToolsController:dispatchPdf')->setName('pdf');
+//$app->get('/pdf/{id}', 'App\Controller\ToolsController:dispatchPdf')->setName('pdf');
 $app->get('/inscription/{id}', 'App\Controller\InviteController:dispatchInscription')->setName('inscription');
 $app->post('/inscription', 'App\Controller\InviteController:inscription')->setName('inscriptio');
 $app->get('/testMailDoro', 'App\Controller\ToolsController:testMailDoro')->setName('testMailDoro');
@@ -13,6 +13,7 @@ $app->get('/testMailMagni', 'App\Controller\ToolsController:testMailMagni')->set
 $app->get('/testConfirme', 'App\Controller\ToolsController:testConfirme')->setName('testConfirme');
 $app->get('/testRefus', 'App\Controller\ToolsController:testRefus')->setName('testRefus');
 $app->get('/mail', 'App\Controller\ToolsController:mail')->setName('mail');
+$app->get('/hash', 'App\Controller\ToolsController:generateHash')->setName('hash');
 
 $app->group('/secure', function () {
     $this->get('/invite', 'App\Controller\InviteController:invite')->setName('invite');

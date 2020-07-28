@@ -2,9 +2,10 @@
 {% block content %}
     <br>
     <div style="text-align: center;" class="table-responsive" id="div">
-        {% if nbInvites %}Nombre d'invités : {{ nbInvites }} / {% endif %}Nombre de participants : {{ nbParticipants }}
+        {% if nbInvites %}Nombre d'invités : {{ nbInvites }}
+        <br />{% endif %}
+        Nombre de participants : {{ nbParticipants }} / {{ jauge }}
         <br />
-
         <table class="table" id="example">
             <thead style="font-size: 14px;">
                 <tr>
@@ -37,7 +38,7 @@
                     <td>{{ invite.telPortable }}</td>
                     <td>{{ invite.entreprise }}</td>
                     <td>{{ invite.fonction }}</td>
-                    <td>{{ invite.secteurActivite }}</td>
+                    <td>{{ invite.codeNaf }}</td>
                     <td style="text-align: center">
                         {%  if invite.getReponse().participe is null %}
                             {{ invite.getReponse().participe }}

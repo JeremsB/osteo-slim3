@@ -15,11 +15,20 @@ use App\Lib\PdfCreator;
 use App\Model\JoInvites;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use Slim\Container;
 use Slim\Http\Stream;
 use Spipu\Html2Pdf\Html2Pdf;
 
 final class ToolsController extends BaseController
 {
+    private $inviteDao;
+
+    public function __construct(Container  $c)
+    {
+        parent::__construct($c);
+        $this->inviteDao = new InviteDao($this->em);
+    }
+
     public function dispatchPdf(Request $request, Response $response, $args)
     {
         $inviteDao = new InviteDao($this->em);
@@ -55,7 +64,20 @@ final class ToolsController extends BaseController
         return $response;
     }
     public function mail(Request $request, Response $response, $args){
-        $this->view->render($response, 'email.html');
+        $this->view->render($response, 'email_reponse.html');
+        return $response;
+    }
+
+    public function generateHash(Request $request, Response $response, $args){
+
+        $invites = $this->inviteDao->getInvites();
+        foreach ($invites as $invite){
+            $joInvite = $this->inviteDao->getInvitesById($invite->getInvitesId());
+            $hash = hash('whirlpool',$joInvite->getInvitesId());
+            $joInvite->setHash($hash);
+            $this->inviteDao->saveInvite($joInvite);
+        }
+        $this->view->render($response, 'test.twig',['invites' => $invites]);
         return $response;
     }
 }
