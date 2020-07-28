@@ -34,7 +34,7 @@ class InviteController extends BaseController
     public function dispatchInscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-        if($nbPresent >= Constants::JAUGE) { //Créer une constante qqupart
+        if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
         }else{
             $id = $args["id"];
@@ -50,7 +50,7 @@ class InviteController extends BaseController
     public function inscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-        if($nbPresent >= Constants::JAUGE) { //Créer une constante qqupart
+        if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
         }else {
             $invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
