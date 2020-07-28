@@ -1,0 +1,218 @@
+{% extends 'base.twig' %}
+{% block content %}
+<div class="columns is-mobile">
+    <div class="column is-6-desktop is-offset-3-desktop is-10-mobile is-offset-1-mobile">
+        <div style="text-align: center">
+            <br>
+            <h3 style="color: #0F3780">{% if invite.nom %}Modification{% else %}Ajout{% endif %} d'un invité à une soirée</h3>
+            <br>
+            <p style="color: #FF6A08">{% if invite.nom %}{% else %}Avant d'ajouter un invité, pensez à vérifier qu'il n'est pas présent dans le listing global.{% endif %}</p>
+            <br>
+        </div>
+        <form action="{{ path_for('ajoutInvite') }}" method="post">
+            {% if invite.invitesId %}
+                <input type="hidden" name="id" value="{{ invite.invitesId }}">
+            {% endif %}
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Civ : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <select name="civ" required="required">
+                                {% if  invite.civ  == "MME" %}
+                                    <option value="MME" selected>MME</option>
+                                    <option value="MLLE">MLLE</option>
+                                    <option value="M">M</option>
+                                {% elseif invite.civ    == "M" %}
+                                    <option value="MME">MME</option>
+                                    <option value="MLLE">MLLE</option>
+                                    <option value="M" selected>M</option>
+                                {% elseif invite.civ    == "MLLE" %}
+                                    <option value="MME">MME</option>
+                                    <option value="MLLE">MLLE</option>
+                                    <option value="M" selected>M</option>
+                                {% else %}
+                                    <option selected value></option>
+                                    <option value="MME">MME</option>
+                                    <option value="MLLE">MLLE</option>
+                                    <option value="M">M</option>
+                                {% endif %}
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Nom : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" name="nom" required="required" value="{{ invite.nom }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Prénom : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" name="prenom" required="required" value="{{ invite.prenom }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Tel mobile : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="tel" name="telMobile" required="required" value="{{ invite.telPortable }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Email : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" name="email" required="required" value="{{ invite.email }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Entreprise : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" name="entreprise" required="required" value="{{ invite.entreprise }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Fonction : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" name="fonction" required="required" value="{{ invite.fonction }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Secteur d'activité : </label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" name="codeNaf" required="required" value="{{ invite.codeNaf }}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal" >
+                    <label class="label" style="margin-top: -7px">Client :</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <label class="radio" style="vertical-align: bottom">
+                                <input type="radio" id="btnNon" name="btnClient" value="0" {% if invite.estClient != true %}checked{% endif %} />
+                                Non
+                            </label>
+                            <label class="radio" style="vertical-align: bottom">
+                                <input type="radio" id="btnOui" name="btnClient" value="1" {% if invite.estClient %}checked{% endif %}/>
+                                Oui
+                            </label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal" >
+                    <label class="label" style="margin-top: -7px">Présent :</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <label class="radio" style="vertical-align: bottom">
+                                <input type="radio" id="btnNon" name="btnParticipe" value="0" {% if invite.reponse.participe != true %}checked{% endif %} />
+                                Non
+                            </label>
+                            <label class="radio" style="vertical-align: bottom">
+                                <input type="radio" id="btnOui" name="btnParticipe" value="1" {% if invite.reponse.participe %}checked{% endif %} />
+                                Oui
+                            </label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal" >
+                    <label class="label" style="margin-top: -7px">Lien conférence :</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <label class="radio" style="vertical-align: bottom">
+                                <input type="radio" id="btnNon" name="btnLinkConf" value="0" {% if invite.reponse.lienConf != true %}checked{% endif %} />
+                                Non
+                            </label>
+                            <label class="radio" style="vertical-align: bottom">
+                                <input type="radio" id="btnOui" name="btnLinkConf" value="1" {% if invite.reponse.lienConf %}checked{% endif %} />
+                                Oui
+                            </label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center">
+                <button class="button is-info" type="submit" style="background-color: #2E4094;">
+                    Ajouter
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    <script>
+        /*function displayOff(){
+            document.getElementById('divAccompagnant').style.display ='none';
+            document.getElementById('acc_nom').required=false;
+            document.getElementById('acc_prenom').required=false;
+            document.getElementById('acc_email').required=false;
+            document.getElementById('acc_tel').required=false;
+            document.getElementById('acc_cp').required=false;
+            document.getElementById('acc_ville').required=false;
+        }
+        function displayOn(){
+            document.getElementById('divAccompagnant').style.display = 'block';
+            document.getElementById('acc_nom').required=true;
+            document.getElementById('acc_prenom').required=true;
+            document.getElementById('acc_email').required=true;
+            document.getElementById('acc_tel').required=true;
+            document.getElementById('acc_cp').required=true;
+            document.getElementById('acc_ville').required=true;
+        }*/
+    </script>
+{% endblock %}
+
