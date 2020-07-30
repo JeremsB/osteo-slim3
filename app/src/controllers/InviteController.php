@@ -55,6 +55,8 @@ class InviteController extends BaseController
         }else {
             $invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
             $invite->setEmail($request->getParam('email'));
+            $invite->setPrenom($request->getParam('prenom'));
+            $invite->setNom($request->getParam('nom'));
             $invite->setTelPortable($request->getParam('tel'));
             $invite->setEntreprise($request->getParam('entreprise'));
             $invite->setFonction($request->getParam('fonction'));
