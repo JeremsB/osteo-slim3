@@ -29,6 +29,15 @@ class ReponseDao
                 ->getQuery()
                 ->getSingleScalarResult();
     }
+    public function countLiens(){
+        return $this->em->createQueryBuilder()
+            ->select('COUNT(r.lienConf)')
+            ->from(JoReponses::class,'r')
+            ->where('r.lienConf = 1')
+            ->andWhere('r.suppr IS NULL')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
     public function countInvitesNoResponse(){
             return $this->em->createQueryBuilder()
                 ->select('COUNT(i.invitesId)')

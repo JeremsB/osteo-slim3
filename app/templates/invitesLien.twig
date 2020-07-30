@@ -1,21 +1,25 @@
 {% extends 'base.twig' %}
 {% block content %}
     <br>
-    <div class="table-responsive">
+    <div style="text-align: center;" class="table-responsive" id="div">
+        {% if nbLiens %}Nombre d'invités souhaitant le lien de la conférence : {{ nbLiens }}
+        <br />{% endif %}
+        Nombre de participants : {{ nbParticipants }} / {{ jauge }}
+        <br />
         <table class="table" id="example">
             <thead style="font-size: 14px;">
-            <tr>
-                <th>Civ</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-                <th>Entreprise</th>
-                <th>Fonction</th>
-                <th><abbr title="Secteur d'activité">Code NAF</abbr></th>
-                <th>Participe</th>
-                <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
-            </tr>
+                <tr>
+                    <th>Civ</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Entreprise</th>
+                    <th>Fonction</th>
+                    <th><abbr title="Secteur d'activité">Code NAF</abbr></th>
+                    <th>Lien</th>
+                    <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+                </tr>
             </thead>
             <tbody style="font-size: 14px;">
             {% for invite in invites%}
@@ -36,13 +40,13 @@
                     <td>{{ invite.fonction }}</td>
                     <td>{{ invite.codeNaf }}</td>
                     <td style="text-align: center">
-                        {%  if invite.getReponse().participe is null %}
-                            {{ invite.getReponse().participe }}
+                        {%  if invite.getReponse().lienConf is null %}
+                            {{ invite.getReponse().lienConf }}
                             <span class="icon has-text-info">
                                     <i class="fas fa-question"></i>
                                 </span>
                         {% else %}
-                            {%  if invite.getReponse().participe == 1 %}
+                            {%  if invite.getReponse().lienConf == 1 %}
                                 <span class="icon has-text-success">
                                 <i class="fas fa-check"></i>
                             </span>

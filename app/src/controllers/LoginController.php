@@ -26,6 +26,7 @@ class LoginController extends BaseController
     public function login(Request $request, Response $response, $args)
     {
         $array = $request->getParsedBody();
+        $array['password'] = hash('whirlpool',$array['password']);
         $user = $this->userDao->getUser($array['login'], $array['password']);
         if (isset($user)) {
             Session::set('user', $user);

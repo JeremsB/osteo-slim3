@@ -80,6 +80,18 @@ class InviteDao
         }
         return $arrayInvite;
     }
+    public function getInvitesLien(){
+        $invites = $this->em->getRepository('App\Model\JoInvites')->findAll();
+        $arrayInvite = [];
+        foreach ($invites as $invite){
+            if(!is_null($invite->getReponse())){ //Si l'invité a répondu
+                if($invite->getReponse()->getLienConf() == 1) { //Si l'invité ne participe pas
+                    $arrayInvite[] = $invite;
+                }
+            }
+        }
+        return $arrayInvite;
+    }
     public function suppInvite($id){
         $array = ['invitesId' => $id];
         $invite = $this->em->getRepository('App\Model\JoInvites')->findOneBy($array);

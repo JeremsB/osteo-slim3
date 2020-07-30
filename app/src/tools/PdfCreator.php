@@ -47,7 +47,7 @@ class PdfCreator
                                     <p style="font-size: 18px;color: #0E3885;">Merci de le présenter lors de votre arrivée sous format papier ou digital et de vous munir d’une pièce d’identité.</p> 
                                 </div>
                                 <div style="width: 40%;text-align:left;margin-top: 30px;margin-left: 20px">
-                                        <!--<img src="http://194.250.42.70/BPGO/LOGO_ACEF_Cotes_Armor_2.png" height="100" width="100">-->
+                                        <!--<img src="http://194.250.42.70/BPGO/ENTREPRENDRE_LOGO.png" height="100" width="100">-->
                                     </div>
                                     <div style="width: 50%;position: relative;right: 20px;margin-top: -90px;">
                                     <div style="text-align: right;">
@@ -90,7 +90,7 @@ class PdfCreator
                                     <p style="font-size: 18px;color: #0E3885;">Merci de le présenter lors de votre arrivée sous format papier ou digital et de vous munir d’une pièce d’identité.</p> 
                                 </div>
                                 <div style="width: 40%;text-align:left;margin-top: 30px;margin-left: 20px">
-                                        <!--<img src="http://194.250.42.70/BPGO/LOGO_ACEF_Cotes_Armor_2.png" height="100" width="100">-->
+                                        <!--<img src="http://194.250.42.70/BPGO/ENTREPRENDRE_LOGO.png" height="100" width="100">-->
                                     </div>
                                     <div style="width: 50%;position: relative;right: 20px;margin-top: -90px;">
                                     <div style="text-align: right;">

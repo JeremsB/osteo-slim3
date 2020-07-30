@@ -96,13 +96,6 @@ class JoInvites
     private $reponse;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="CLE_INSERT", type="integer", nullable=true)
-     */
-    private $cleInsert;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="HASH", type="string", length=50, nullable=true)
@@ -357,30 +350,6 @@ class JoInvites
     public function getReponse()
     {
         return $this->reponse;
-    }
-
-    /**
-     * Set cleInsert
-     *
-     * @param integer $cleInsert
-     *
-     * @return JoInvites
-     */
-    public function setCleInsert($cleInsert)
-    {
-        $this->cleInsert = $cleInsert;
-
-        return $this;
-    }
-
-    /**
-     * Get cleInsert
-     *
-     * @return integer
-     */
-    public function getCleInsert()
-    {
-        return $this->cleInsert;
     }
 
     /**

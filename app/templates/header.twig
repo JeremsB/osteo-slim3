@@ -1,11 +1,11 @@
 <div class="columns is-mobile">
     <div class="column" style="text-align: left;margin-left: 50px;margin-top: 15px">
-        <img src='{{ base_url() }}/img/LOGO_ACEF_Cotes_Armor_2.png' width="120">
+        <img src='{{ base_url() }}/img/ENTREPRENDRE_LOGO.png' width="120">
     </div>
     <div class="column" style="text-align: center;margin-top: 50px">
         <h1 style="color: #06A6C1;font-size:25px;text-transform: uppercase"><strong style="color: #06A6C1">Entreprendre 2024</strong></h1>
     </div>
-    <div class="column" style="text-align: right;margin-right: 40px;">
+    <div class="column" style="text-align: right;margin-right: 40px; margin-top: 30px">
         <img src='{{ base_url() }}/img/BP_Grand_Ouest_D.png' width="300" height="1000">
     </div>
 </div>
@@ -22,6 +22,10 @@
         &nbsp &nbsp|&nbsp &nbsp
         <a href="{{ path_for('refus') }}" style="color: white">
             Listing des refus
+        </a>
+        &nbsp &nbsp|&nbsp &nbsp
+        <a href="{{ path_for('invitesLien') }}" style="color: white">
+            Invités souhaitant le lien de la conférence
         </a>
         &nbsp &nbsp|&nbsp &nbsp
         <a href="{{ path_for('ajoutInvite') }}" style="color: white">

@@ -77,6 +77,7 @@ final class ToolsController extends BaseController
             $joInvite->setHash($hash);
             $this->inviteDao->saveInvite($joInvite);
         }
+
         $this->view->render($response, 'test.twig',['invites' => $invites]);
         return $response;
     }

@@ -19,6 +19,7 @@ $app->group('/secure', function () {
     $this->get('/invite', 'App\Controller\InviteController:invite')->setName('invite');
     $this->get('/participant', 'App\Controller\InviteController:participant')->setName('participant');
     $this->get('/refus', 'App\Controller\InviteController:refus')->setName('refus');
+    $this->get('/invitesLien', 'App\Controller\InviteController:invitesLien')->setName('invitesLien');
     $this->get('/ajoutInvite', 'App\Controller\InviteController:dispatchAjoutInvite')->setName('ajoutInvite');
     $this->post('/ajoutInvite', 'App\Controller\InviteController:ajoutInvite')->setName('ajoutInvite');
     $this->get('/getInvite/{id}', 'App\Controller\InviteController:getInvite')->setName('getInvite');

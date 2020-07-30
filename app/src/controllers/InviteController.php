@@ -105,6 +105,14 @@ class InviteController extends BaseController
         $this->view->render($response, 'refus.twig',['invites' => $list]);
         return $response;
     }
+    public function invitesLien(Request $request, Response $response, $args)
+    {
+        $list = $this->inviteDao->getInvitesLien();
+        $nbParticipants = $this->reponseDao->countPresent();
+        $nbLiens = $this->reponseDao->countLiens();
+        $this->view->render($response, 'invitesLien.twig',['invites' => $list,'nbLiens'=> $nbLiens, 'nbParticipants' => $nbParticipants, 'jauge' => Constants::JAUGE]);
+        return $response;
+    }
     public function dispatchAjoutInvite(Request $request, Response $response, $args){
         $this->view->render($response, 'ajoutInvite.twig');
         return $response;
