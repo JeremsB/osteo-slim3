@@ -115,7 +115,7 @@ class MailSend
                                                 <tbody>
                                                 <tr><td height="10"></td></tr>
                                                 <tr>
-                                                    <td><img src="images/header_passV2.png" alt="PASS D\'ENTREE" width="650"></td>
+                                                    <td><img src="http://www.bpgo-entreprendre2024.fr/img/header_passV2.png" alt="PASS D\'ENTREE" width="650"></td>
                                                 </tr>
                                                 <tr><td height="20"></td></tr>
                                                 <tr>
@@ -135,7 +135,7 @@ class MailSend
                                                 </tr>
                                                 <tr><td height="20px;"></td></tr>
                                                 <tr>
-                                                    <td align="center" style="font-family: arial, sans-serif; font-size: 22px; color:#E30613; font-weight: bold;">'.$invite->getNom().' '.$invite->getPrenom().'</td>
+                                                    <td align="center" style="font-family: arial, sans-serif; font-size: 22px; color:#E30613; font-weight: bold; text-transform:uppercase ">'.$invite->getNom().' '.$invite->getPrenom().'</td>
                                                 </tr>
                                                 <tr><td height="20px;"></td></tr>
                                                 <tr>
