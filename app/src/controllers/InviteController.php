@@ -57,6 +57,7 @@ class InviteController extends BaseController
             $invite->setEmail($request->getParam('email'));
             $invite->setPrenom($request->getParam('prenom'));
             $invite->setNom($request->getParam('nom'));
+            $invite->setCiv($request->getParam('civ'));
             $invite->setTelPortable($request->getParam('tel'));
             $invite->setEntreprise($request->getParam('entreprise'));
             $invite->setFonction($request->getParam('fonction'));
