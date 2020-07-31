@@ -135,7 +135,7 @@ class MailSend
                                                                 </tr>
                                                                 <tr><td height="20px;">&nbsp;</td></tr>
                                                                 <tr>
-                                                                    <td align="center" style="font-family: arial, sans-serif; font-size: 20px; color:#E30613; font-weight: bold;">'.$invite->getNom().' '.$invite->getPrenom().'</td>
+                                                                    <td align="center" style="font-family: arial, sans-serif; font-size: 20px; color:#E30613; font-weight: bold; text-transform: uppercase">'.$invite->getNom().' '.$invite->getPrenom().'</td>
                                                                 </tr>
                                                                 <tr><td height="20px;">&nbsp;</td></tr>
                                                                 <tr>
