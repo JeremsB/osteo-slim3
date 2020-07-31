@@ -145,7 +145,6 @@ class InviteController extends BaseController
         $joInvite->setCodeNaf($request->getParam('codeNaf'));
         $joInvite->setEstClient($request->getParam('btnClient'));
 
-
         $this->inviteDao->saveInviteAdmin($joInvite);
 
         if($participe==1) {

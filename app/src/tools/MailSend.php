@@ -35,7 +35,7 @@ class MailSend
             $mail->Port = 25;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('invitation@bpgo.fr', 'BPGO ENTREPRENDRE 2024');
+            $mail->setFrom('invitation@bpgo-entreprendre2024.fr', 'BPGO ENTREPRENDRE 2024');
             $mail->addAddress($adresse, 'User');
 
             //Attachments
@@ -115,7 +115,7 @@ class MailSend
                                                             <tbody>
                                                                 <tr><td height="10">&nbsp;</td></tr>
                                                                 <tr>
-                                                                    <td><img src="images/header_passV2.png" alt="PASS D\'ENTREE" width="650"></td>
+                                                                    <td><img src="http://www.bpgo-entreprendre2024.fr/img/header_passV2.png" alt="PASS D\'ENTREE" width="650"></td>
                                                                 </tr>
                                                                 <tr><td height="20">&nbsp;</td></tr>
                                                                 <tr>
@@ -177,7 +177,7 @@ class MailSend
                                                                                     <table border="0" cellspacing="0" cellpadding="0" width="80%">
                                                                                         <tbody>
                                                                                             <tr>
-                                                                                                <td align="center"><img src="images/BPGO_logo_pett.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/BPGO_logo_pett.png" alt=""></td>
                                                                                                 <td width="15" ></td>
                                                                                                 <td>
                                                                                                     <table border="0" cellspacing="0" cellpadding="0">
@@ -189,7 +189,7 @@ class MailSend
                                                                                                     </table>
                                                                                                 </td>
                                                                                                 <td width="15" ></td>
-                                                                                                <td align="center"><img src="images/entreprendre2024_ptt.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/entreprendre2024_ptt.png" alt=""></td>
                                                                                                 <td width="15"></td>
                                                                                                 <td>
                                                                                                     <table border="0" cellspacing="0" cellpadding="0">
@@ -201,7 +201,7 @@ class MailSend
                                                                                                     </table>
                                                                                                 </td>
                                                                                                 <td width="15"></td>
-                                                                                                <td align="center"><img src="images/canaux.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/canaux.png" alt=""></td>
                                                                                                 <td width="15"></td>
                                                                                                 <td>
                                                                                                     <table border="0" cellspacing="0" cellpadding="0">
@@ -213,7 +213,7 @@ class MailSend
                                                                                                     </table>
                                                                                                 </td>
                                                                                                 <td width="15"></td>
-                                                                                                <td align="center"><img src="images/medef.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/medef.png" alt=""></td>
                                                                                                 <td width="15"></td>
                                                                                             </tr>
                                                                                         </tbody>
@@ -230,7 +230,7 @@ class MailSend
                                                                                             <tr>
                     ​
                                                                                                 <td width="15"></td>
-                                                                                                <td align="center"><img src="images/adie.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/adie.png" alt=""></td>
                                                                                                 <td width="15"></td>
                                                                                                 <td>
                                                                                                     <table border="0" cellspacing="0" cellpadding="0">
@@ -242,7 +242,7 @@ class MailSend
                                                                                                     </table>
                                                                                                 </td>
                                                                                                 <td width="15"></td>
-                                                                                                <td align="center"><img src="images/CRESS.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/CRESS.png" alt=""></td>
                                                                                                 <td width="15"></td>
                                                                                                 <td>
                                                                                                     <table border="0" cellspacing="0" cellpadding="0">
@@ -254,7 +254,7 @@ class MailSend
                                                                                                     </table>
                                                                                                 </td>
                                                                                                 <td width="15"></td>
-                                                                                                <td align="center"><img src="images/solideo.png" alt=""></td>
+                                                                                                <td align="center"><img src="http://www.bpgo-entreprendre2024.fr/img/solideo.png" alt=""></td>
                                                                                             </tr>
                                                                                         </tbody>
                                                                                     </table>
