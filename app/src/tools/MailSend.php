@@ -119,7 +119,7 @@ class MailSend
                                                                 </tr>
                                                                 <tr><td height="20">&nbsp;</td></tr>
                                                                 <tr>
-                                                                    <td style="font-family: arial, sans-serif; font-size: 20px; color:#727271; font-weight: bold; text-align: justify;">LES JEUX OLYMPIQUES ET PARALYMPIQUES DE <span style="color: #192A6B">PARIS 2024</span> DES <span style="color: #E30613">OPPORTUNITÉS</span> DE DÉVELOPPEMENT EN <span style="color: #E30613">RÉGION</span>. <br>PRÉPAREZ-VOUS DÈS MAINTENANT !</td>
+                                                                    <td style="font-family: arial, sans-serif; font-size: 20px; color:#727271; font-weight: bold; text-align: justify;">LES JEUX OLYMPIQUES ET PARALYMPIQUES DE <span style="color: #192A6B">PARIS 2024</span> <br>DES <span style="color: #E30613">OPPORTUNITÉS</span> DE DÉVELOPPEMENT EN <span style="color: #E30613">RÉGION</span>. <br>PRÉPAREZ-VOUS DÈS MAINTENANT !</td>
                                                                 </tr>
                                                                 <tr><td height="20">&nbsp;</td></tr>
                                                                 <tr>
