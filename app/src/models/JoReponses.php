@@ -5,7 +5,7 @@ namespace App\Model;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AgepReponses
+ * JoReponses
  *
  * @ORM\Table(name="JO_REPONSES", indexes={@ORM\Index(name="IDX_253480723CF173BE", columns={"INVITES_ID"})})
  * @ORM\Entity
@@ -154,7 +154,7 @@ class JoReponses
      *
      * @param JoInvites $invites
      *
-     * @return AgepReponses
+     * @return JoReponses
      */
     public function setInvites(JoInvites $invites = null)
     {

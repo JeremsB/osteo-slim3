@@ -15,9 +15,9 @@ class GuestMiddleware
     public function __invoke($request, $response, $next)
     {
         $router = $this->container['router'];
-        if(!Session::exists('user')) {
+        /*if(!Session::exists('user')) {
             return $response->withRedirect($router->pathFor('login'));
-        }
+        }*/
         $response = $next($request, $response);
         return $response;
     }

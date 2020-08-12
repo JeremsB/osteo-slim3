@@ -42,12 +42,17 @@
                     </div>
 
                     <br />
-
-                    <p style='color:gray; font-size:20px;'>
-                        Vous allez recevoir d’ici quelques instants un mail qui fera office de Pass d’Entrée nominatif
-                        que vous devrez présenter le jour J.
-                    </p>
-
+                    
+                    {% if reponse.participe == 1 %}
+                        <p style='color:gray; font-size:20px;'>
+                            Vous allez recevoir d’ici quelques instants un mail qui fera office de Pass d’Entrée nominatif
+                            que vous devrez présenter le jour J.
+                        </p>
+                    {% elseif reponse.lienConf == 1 %}
+                        <p style='color:gray; font-size:20px;'>
+                            Vous allez recevoir le lien permettant de regarder la conférence par mail lorsque celle-ci aura eu lieu.
+                        </p>
+                    {% endif %}
                     <br />
 
                     <div style="width: 100%; text-align: center">

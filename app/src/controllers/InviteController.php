@@ -34,17 +34,17 @@ class InviteController extends BaseController
     public function dispatchInscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-        if($nbPresent >= Constants::JAUGE) {
+        /*if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
-        }else{
+        }else{*/
             $id = $args["id"];
             $invite = $this->inviteDao->getInvitesByHash($id);
             if($invite){
-                $this->view->render($response, 'inscription.twig',['invite' => $invite]);
+                $this->view->render($response, 'inscription.twig',['invite' => $invite, 'jauge' => Constants::JAUGE, 'nbParticipants' =>  $nbPresent]);
             } else {
                 $this->view->render($response, '404.twig',['invite' => $invite]);
             }
-        }
+        //}
         return $response;
     }
     public function inscription(Request $request, Response $response, $args)
@@ -71,7 +71,11 @@ class InviteController extends BaseController
             }
             $reponse->setInvites($invite);
             $reponse->setParticipe($request->getParam('participe'));
-            $reponse->setLienConf($request->getParam('lienConf'));
+            if ($request->getParam('participe') == true) {
+                $reponse->setLienConf(false);
+            } else {
+                $reponse->setLienConf($request->getParam('lienConf'));
+            }
             $date = new \DateTime("now");
             $date = date_format($date, "d-m-Y H:i:s");
             $reponse->setReponseDate($date);
@@ -81,7 +85,7 @@ class InviteController extends BaseController
 
             $mailSend = new MailSend();
             $mailSend->sendMail($invite->getEmail(),$invite,'magnificat','magnificat*35830');
-            $this->view->render($response, 'confirme.twig');
+            $this->view->render($response, 'confirme.twig' ,['invite' => $invite,'reponse'=> $reponse]);
         }
         return $response;
     }
