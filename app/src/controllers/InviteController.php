@@ -50,9 +50,9 @@ class InviteController extends BaseController
     public function inscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-        if($nbPresent >= Constants::JAUGE) {
+        /*if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
-        }else {
+        }else {*/
             $invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
             $invite->setEmail($request->getParam('email'));
             $invite->setPrenom($request->getParam('prenom'));
@@ -84,9 +84,13 @@ class InviteController extends BaseController
             $this->inviteDao->saveInvite($invite);
 
             $mailSend = new MailSend();
-            $mailSend->sendMail($invite->getEmail(),$invite,'magnificat','magnificat*35830');
+            if ($request->getParam('participe') == true) {
+                $mailSend->sendMail($invite->getEmail(), $invite, 'magnificat', 'magnificat*35830');
+            } else if ($request->getParam('lienConf') == true) {
+                $mailSend->sendMailLien($invite->getEmail(), $invite, 'magnificat', 'magnificat*35830');
+            }
             $this->view->render($response, 'confirme.twig' ,['invite' => $invite,'reponse'=> $reponse]);
-        }
+        //}
         return $response;
     }
     public function invite(Request $request, Response $response, $args)

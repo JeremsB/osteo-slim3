@@ -28,6 +28,7 @@
 
                     <hr style ="border: 2px solid #BD2323;"/>
 
+                    {% if reponse.participe == 1 %}
                     <p style='color:gray; font-size:20px; font-weight: bold'>
                         Votre inscription à la soirée Entreprendre 2024 a bien été prise en compte.</p>
 
@@ -42,13 +43,19 @@
                     </div>
 
                     <br />
-                    
-                    {% if reponse.participe == 1 %}
+
                         <p style='color:gray; font-size:20px;'>
                             Vous allez recevoir d’ici quelques instants un mail qui fera office de Pass d’Entrée nominatif
                             que vous devrez présenter le jour J.
                         </p>
-                    {% elseif reponse.lienConf == 1 %}
+                    {% else %}
+                    <p style='color:gray; font-size:20px; font-weight: bold'>
+                        Votre réponse a bien été prise en compte.</p>
+
+                    <br />
+                    {% endif %}
+
+                    {% if reponse.lienConf == 1 %}
                         <p style='color:gray; font-size:20px;'>
                             Vous allez recevoir le lien permettant de regarder la conférence par mail lorsque celle-ci aura eu lieu.
                         </p>

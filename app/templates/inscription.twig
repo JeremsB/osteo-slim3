@@ -76,19 +76,13 @@
                                         <div class="column is-12-mobile form">
                                             <div class="field">
                                                 <div class="control">
-                                                    <select name="civ" required="required" class="input">
+                                                    <select name="civ" required="required" class="input" >
                                                         {% if  invite.civ  == "MME" %}
                                                             <option value="MME" selected>MME</option>
-                                                            <option value="MLLE">MLLE</option>
-                                                            <option value="M">M</option>
                                                         {% elseif invite.civ    == "M" %}
-                                                            <option value="MME">MME</option>
-                                                            <option value="MLLE">MLLE</option>
                                                             <option value="M" selected>M</option>
                                                         {% elseif invite.civ    == "MLLE" %}
-                                                            <option value="MME">MME</option>
                                                             <option value="MLLE">MLLE</option>
-                                                            <option value="M" selected>M</option>
                                                         {% else %}
                                                             <option selected value>CIVILITÉ</option>
                                                             <option value="MME">MME</option>
@@ -100,12 +94,12 @@
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input class="input" type="text" placeholder="PRENOM" name="prenom" value="{{ invite.prenom }}" required>
+                                                    <input class="input" type="text" placeholder="PRENOM" name="prenom" value="{{ invite.prenom }}" required {% if (invite.prenom != null) %}readonly{% endif %}>
                                                 </div>
                                             </div>
                                             <div class="field">
                                                 <div class="control">
-                                                    <input class="input" type="text" placeholder="NOM" name="nom"  value="{{ invite.nom }}" required>
+                                                    <input class="input" type="text" placeholder="NOM" name="nom"  value="{{ invite.nom }}" required {% if (invite.nom != null) %}readonly{% endif %}>
                                                 </div>
                                             </div>
                                             <div class="field">
@@ -180,14 +174,14 @@
                                                 <div class="field">
                                                     <p class="control">
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnOui" name="participe" value="1" class="chb_participe" onclick="hideLien()" {% if nbParticipants < jauge %}checked{% endif %}>
+                                                            <input type="checkbox" id="btnOuiParticipe" name="participe" value="1" class="chb_participe" onclick="hideLien()" {% if nbParticipants < jauge %}checked{% endif %}>
                                                             Oui<span class="checkmark"></span>
                                                         </label>
                                                         &nbsp
                                                         &nbsp
                                                         &nbsp
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnNon" name="participe" value="0" class="chb_participe" onclick="showLien()" {% if nbParticipants >= jauge %}checked{% endif %}/>
+                                                            <input type="checkbox" id="btnNonParticipe" name="participe" value="0" class="chb_participe" onclick="showLien()" {% if nbParticipants >= jauge %}checked{% endif %}/>
                                                             Non<span class="checkmark"></span>
                                                         </label>
                                                     </p>
@@ -346,6 +340,14 @@
         function hideLien () {
             document.getElementById("div-lien").style.display = "none";
         }
+
+        $( document ).ready(function() {
+            if (document.getElementById("btnNonParticipe").checked){
+                document.getElementById("div-lien").style.display = "flex";
+            } else {
+                document.getElementById("div-lien").style.display = "none";
+            }
+        });
 
         $(".chb_lien").change(function() {
             $(".chb_lien").prop('checked', false);
