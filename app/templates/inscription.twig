@@ -14,7 +14,7 @@
     <body>
         <div class="columns is-mobile">
             <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile" style="background-color: white;border-radius: 40px;">
-                <div style="background-color: #23237C; width: 97%; margin: auto;">
+                <div style="background-color: #23237C; width: 100%; margin: auto;">
                     <div style="width: 100%">
                         <img src='{{ base_url() }}/img/header_inscription.png' style="width: 100%">
                     </div>
@@ -25,9 +25,9 @@
 
                         <div class="columns is-mobile">
                             <div class="column is-10 is-offset-1">
-                                <h2 style="font-size: 20px; text-align: justify"><strong style="color: white;">LES JEUX OLYMPIQUES ET PARALYMPIQUES DE PARIS 2024</strong></h2>
-                                        <h2 style="font-size: 20px; text-align: justify"><strong style="color: white;">DES OPPORTUNITÉS DE DÉVELOPPEMENT EN RÉGION.</strong></h2>
-                                            <h2 style="font-size: 20px; text-align: justify"><strong style="color: white;">PRÉPAREZ-VOUS DÈS MAINTENANT !</strong></h2>
+                                <h2 style="font-size: 20px; text-align: left"><strong style="color: white;">LES JEUX OLYMPIQUES ET PARALYMPIQUES DE PARIS 2024</strong></h2>
+                                        <h2 style="font-size: 20px; text-align: left"><strong style="color: white;">DES OPPORTUNITÉS DE DÉVELOPPEMENT EN RÉGION.</strong></h2>
+                                            <h2 style="font-size: 20px; text-align: left"><strong style="color: white;">PRÉPAREZ-VOUS DÈS MAINTENANT !</strong></h2>
                             </div>
                         </div>
 
@@ -142,7 +142,7 @@
                                 <div class="column is-10 is-offset-1">
                                     <div class="columns is-mobile">
                                         <div class="column">
-                                            <h2 class="label" style="text-align: left;color:white">Êtes-vous client à la Banque Populaire Grand Ouest ?*</h2>
+                                            <h2 class="label" style="text-align: left;color:white">Êtes-vous client à la Banque&nbsp;Populaire Grand&nbsp;Ouest&nbsp;?*</h2>
                                         </div>
                                         <div class="column">
                                             <div class="field-body">
@@ -168,7 +168,7 @@
 
                                     <div class="columns is-mobile div-participe" {% if nbParticipants >= jauge %}style="display: none;"{% endif %}>
                                         <div class="column">
-                                            <h2 class="label" style="text-align: left;color:white">Je participe à la Conférence* :</h2>
+                                            <h2 class="label" style="text-align: left;color:white">Je participe à la Conférence*&nbsp;:</h2>
                                         </div>
                                         <div class="column">
                                             <div class="field-body">
@@ -196,7 +196,7 @@
                                     <div class="columns is-mobile" {% if nbParticipants >= jauge %}style="display: flex;"{% else %}style="display:none"{% endif %} id="div-lien">
                                         <div class="column">
                                             <h2 class="label" style="text-align: left;color:white;">Je ne participerai pas mais je souhaite
-                                                recevoir le lien de la conférence* :</h2>
+                                                recevoir le lien de la conférence*&nbsp;:</h2>
                                         </div>
                                         <div class="column">
                                             <div class="field-body">
@@ -231,7 +231,7 @@
                             <br />
                             <div class="columns is-mobile">
                                 <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile">
-                                    <button id="checkBtn" type="submit" style="border:none;border-radius: 15px;background-color: #E30613;font-size: 30px;width: 60%;padding: 10px 0px"><strong style="color:#ffffff">VALIDATION</strong></button>
+                                    <button id="checkBtn" type="submit" style="border:none;border-radius: 15px;background-color: #E30613;font-size: 30px;padding: 10px 20px"><strong style="color:#ffffff">VALIDATION</strong></button>
                                 </div>
                             </div>
                         </form>
@@ -241,7 +241,7 @@
                                 <div style="color: white; text-align: left;">
                                     <br>
                                     <h4>En attendant de participer à ces différents évènements, vous pouvez d’ores et déjà
-                                        consulter :</h4>
+                                        consulter&nbsp;:</h4>
                                     <br />
                                 </div>
 
@@ -342,7 +342,6 @@
                 }
             });
 
-
         });
 
         /*
@@ -365,7 +364,11 @@
             document.getElementById('acc_ville').required=true;
         } */
         function showLien () {
-            document.getElementById("div-lien").style.display = "flex";
+            if (window.matchMedia("(max-width: 450px)").matches) {
+                document.getElementById("div-lien").style.display = "block";
+            } else {
+                document.getElementById("div-lien").style.display = "flex";
+            }
             document.getElementById("btnNon").checked = false;
         }
         function hideLien () {

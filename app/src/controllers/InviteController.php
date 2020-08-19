@@ -37,13 +37,17 @@ class InviteController extends BaseController
         /*if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
         }else{*/
-            $id = $args["id"];
-            $invite = $this->inviteDao->getInvitesByHash($id);
-            if($invite){
-                $this->view->render($response, 'inscription.twig',['invite' => $invite, 'jauge' => Constants::JAUGE, 'nbParticipants' =>  $nbPresent]);
+        $id = $args["id"];
+        $invite = $this->inviteDao->getInvitesByHash($id);
+        if($invite){
+            if ($invite->getReponse() != null) {
+                $this->view->render($response, 'confirme.twig' ,['invite' => $invite,'reponse'=> $invite->getReponse()]);
             } else {
-                $this->view->render($response, '404.twig',['invite' => $invite]);
+                $this->view->render($response, 'inscription.twig', ['invite' => $invite, 'jauge' => Constants::JAUGE, 'nbParticipants' => $nbPresent]);
             }
+        } else {
+            $this->view->render($response, 'bad_hash.twig',['invite' => $invite]);
+        }
         //}
         return $response;
     }

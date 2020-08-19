@@ -13,17 +13,22 @@
 </head>
     <body>
         <div class="columns is-mobile">
-            <div class="column is-8-desktop is-offset-2-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile" style="background-color: white;border-radius: 40px;">
+            <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile" style="background-color: white;border-radius: 40px;">
                 <div style="width: 97%; margin: auto;">
                     <div style="width: 100%">
+                        {% if reponse.participe == 1 %}
                         <img src='{{ base_url() }}/img/header_confirmation.png' style="width: 100%">
+                        {% else %}
+                        <img src='{{ base_url() }}/img/header_confirmationV2.png' style="width: 100%">
+                        {% endif %}
                     </div>
 
                     <hr style ="border: 10px solid white; margin-top: 0"/>
 
                     <h3 style='color:gray; font-family: " Gill Sans ", "Gill Sans MT", Calibri, sans-serif; font-weight: bold; font-variant:small-caps; font-size:24px;'>
-                            LES JEUX OLYMPIQUES ET PARALYMPIQUES DE <span style="color: #23237C">PARIS 2024</span> DES <span style="color: #BD2323">OPPORTUNITÉS</span>
-                        DE DÉVELOPPEMENT EN <span style="color: #BD2323">RÉGION</span>. PRÉPAREZ-VOUS DÈS MAINTENANT !
+                        <p>LES JEUX OLYMPIQUES ET PARALYMPIQUES DE <span style="color: #23237C">PARIS 2024</span></p>
+                        <p>DES <span style="color: #BD2323">OPPORTUNITÉS</span> DE DÉVELOPPEMENT EN <span style="color: #BD2323">RÉGION</span>.</p>
+                        <p>PRÉPAREZ-VOUS DÈS MAINTENANT&nbsp;!</p>
                     </h3>
 
                     <hr style ="border: 2px solid #BD2323;"/>

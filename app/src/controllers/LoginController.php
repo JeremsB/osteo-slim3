@@ -43,4 +43,10 @@ class LoginController extends BaseController
         $this->view->render($response, 'login.twig');
         return $response;
     }
+
+    public function dispatch404(Request $request, Response $response, $args)
+    {
+        $this->view->render($response, 'bad_hash.twig');
+        return $response;
+    }
 }

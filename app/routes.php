@@ -1,7 +1,8 @@
 <?php
 // Routes
-
-$app->get('/', 'App\Controller\LoginController:dispatch')
+$app->get('/', 'App\Controller\LoginController:dispatch404')
+    ->setName('home');
+$app->get('/suivi', 'App\Controller\LoginController:dispatch')
     ->setName('login');
 $app->post('/', 'App\Controller\LoginController:login')
     ->setName('checkLogin');

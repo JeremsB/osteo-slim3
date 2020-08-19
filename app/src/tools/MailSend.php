@@ -402,7 +402,7 @@ class MailSend
                                                             <tbody>
                                                                 <tr><td height="10">&nbsp;</td></tr>
                                                                 <tr>
-                                                                    <td><img src="http://www.bpgo-entreprendre2024.fr/img/header_passV2.png" alt="PASS D\'ENTREE" width="650"></td>
+                                                                    <td><img src="http://www.bpgo-entreprendre2024.fr/img/header_confirmationV2.png" alt="PASS D\'ENTREE" width="650"></td>
                                                                 </tr>
                                                                 <tr><td height="20">&nbsp;</td></tr>
                                                                 <tr>
