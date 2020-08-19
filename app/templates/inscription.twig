@@ -13,7 +13,7 @@
 </head>
     <body>
         <div class="columns is-mobile">
-            <div class="column is-8-desktop is-offset-2-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile" style="background-color: white;border-radius: 40px;">
+            <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile" style="background-color: white;border-radius: 40px;">
                 <div style="background-color: #23237C; width: 97%; margin: auto;">
                     <div style="width: 100%">
                         <img src='{{ base_url() }}/img/header_inscription.png' style="width: 100%">
@@ -149,14 +149,16 @@
                                                 <div class="field">
                                                     <p class="control">
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnOui" name="client" value="1" class="chb_client" checked/>
+                                                            <input type="checkbox" id="btnOuiClient" name="client" value="1" class="chb_client"
+                                                                    {% if invite.estClient == true %} checked {% endif %}/>
                                                             Oui<span class="checkmark"></span>
                                                         </label>
                                                         &nbsp
                                                         &nbsp
                                                         &nbsp
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnNon" name="client" value="0" class="chb_client"/>
+                                                            <input type="checkbox" id="btnNonClient" name="client" value="0" class="chb_client"
+                                                                    {% if invite.estClient == false %} checked {% endif %}/>
                                                             Non<span class="checkmark"></span>
                                                         </label>
                                                     </p>
@@ -164,6 +166,7 @@
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="columns is-mobile div-participe" {% if nbParticipants >= jauge %}style="display: none;"{% endif %}>
                                         <div class="column">
@@ -174,14 +177,16 @@
                                                 <div class="field">
                                                     <p class="control">
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnOuiParticipe" name="participe" value="1" class="chb_participe" onclick="hideLien()" {% if nbParticipants < jauge %}checked{% endif %}>
+                                                            <input type="checkbox" id="btnOuiParticipe" name="participe" value="1" class="chb_participe" onclick="hideLien()"
+                                                                    {% if invite.reponse.participe == true %} checked {% endif %}/>
                                                             Oui<span class="checkmark"></span>
                                                         </label>
                                                         &nbsp
                                                         &nbsp
                                                         &nbsp
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnNonParticipe" name="participe" value="0" class="chb_participe" onclick="showLien()" {% if nbParticipants >= jauge %}checked{% endif %}/>
+                                                            <input type="checkbox" id="btnNonParticipe" name="participe" value="0" class="chb_participe" onclick="showLien()"
+                                                                    {% if invite.reponse.participe == true %} checked {% endif %} {% if nbParticipants >= jauge %}checked{% endif %}/>
                                                             Non<span class="checkmark"></span>
                                                         </label>
                                                     </p>
@@ -228,7 +233,7 @@
                             <br />
                             <div class="columns is-mobile">
                                 <div class="column is-6-desktop is-offset-3-desktop is-10-tablet is-offset-1-tablet is-10-mobile is-offset-1-mobile">
-                                    <button type="submit" style="border:none;border-radius: 15px;background-color: #E30613;font-size: 30px;width: 60%;padding: 10px 0px"><strong style="color:#ffffff">VALIDATION</strong></button>
+                                    <button id="checkBtn" type="submit" style="border:none;border-radius: 15px;background-color: #E30613;font-size: 30px;width: 60%;padding: 10px 0px"><strong style="color:#ffffff">VALIDATION</strong></button>
                                 </div>
                             </div>
                         </form>
@@ -254,8 +259,8 @@
                 </div>
 
                 <br />
-                <div class="column is-10 is-offset-1">
-                    <div class="columns is-mobile">
+
+                <div style="width: 97%; margin: auto;">
                         <div class="column img_partner">
                             <img src='{{ base_url() }}/img/logos.jpg' width="120%">
                         </div>
@@ -280,7 +285,7 @@
                         <div class="column" style="text-align: right;margin-right: 40px;">
                             <img src='{{ base_url() }}/img/logo_solideo.png' height="100">
                         </div>-->
-                    </div>
+
 
                     <div style="text-align: center;font-size: 13px;color:#23237C">
                         <p>Banque Populaire Grand Ouest - Société Anonyme Coopérative de Banque Populaire à capital variable
@@ -288,7 +293,7 @@
                             <br />857 500 227 RCS Rennes. Banque Populaire Grand Ouest exploite la marque Crédit Maritime.</p>
                     </div>
                     <br />
-                    <div style="text-align: justify;font-size: 13px;color:#23237C">
+                    <div style="text-align: justify;font-size: 10px;color:#23237C">
                         <p>Cette réunion peut faire l’objet de prises de vues photographiques et/ou vidéos susceptibles d’être diffusées au public dans le cadre de la promotion de l’évènement proposée par la Banque Populaire Grand Ouest, et ce pour une durée indéterminée. En participant à l’évènement, vous acceptez d’être photographié(e) ou/et filmé(e). Si malgré tout vous ne souhaitiez pas être photographié(e) ou/et filmé(e), nous vous remercions de l’indiquer à l’un des représentants de la Banque Populaire Grand Ouest présents sur les lieux.
                             Banque Populaire Grand Ouest (la « Banque ») recueille des données à caractère personnel vous concernant et met en oeuvre des mesures techniques et organisationnelles appropriées pour s’assurer que les traitements de données à caractère personnel sont effectués conformément à la législation applicable. Les données recueillies via le présent formulaire sont obligatoires. A défaut votre demande ne pourrait pas être traitée ou son traitement s’en trouverait retardé. Vos données sont traitées pour les finalités suivantes : la gestion
                             de votre demande de participation à un évènement organisé par la Banque dans le cadre de l’intérêt légitime de la Banque et la prospection commerciale dans
@@ -310,11 +315,38 @@
                             notre site internet <a href="https://www.bpgo.banquepopulaire.fr" style="color:#23237C">https://www.bpgo.banquepopulaire.fr</a> ou sur simple demande auprès de votre agence.
                     </p>
                     </div>
+                </div>
 
             </div>
         </div>
     <br />
     <script>
+
+        $(document).ready(function () {
+            $('#checkBtn').click(function() {
+                if ($('input[name=client]').is(':checked')) {
+                    t = 1;
+                } else {
+                    alert("Veuillez préciser si vous êtes client ou non.");
+                    return false;
+                }
+                if ($('input[name=participe]').is(':checked')) {
+                    t = 1;
+                } else {
+                    alert("Veuillez préciser si vous participez ou non à la conférence.");
+                    return false;
+                }
+                if ($('input[name=lienConf]').is(':checked')) {
+                    t = 1;
+                } else {
+                    alert("Veuillez préciser si vous souhaitez ou non le lien afin de visionner la conférence.");
+                    return false;
+                }
+            });
+
+
+        });
+
         /*
         function displayOff(){
             document.getElementById('divAccompagnant').style.display ='none';
@@ -336,18 +368,12 @@
         } */
         function showLien () {
             document.getElementById("div-lien").style.display = "flex";
+            document.getElementById("btnNon").checked = false;
         }
         function hideLien () {
             document.getElementById("div-lien").style.display = "none";
+            document.getElementById("btnNon").checked = true;
         }
-
-        $( document ).ready(function() {
-            if (document.getElementById("btnNonParticipe").checked){
-                document.getElementById("div-lien").style.display = "flex";
-            } else {
-                document.getElementById("div-lien").style.display = "none";
-            }
-        });
 
         $(".chb_lien").change(function() {
             $(".chb_lien").prop('checked', false);
