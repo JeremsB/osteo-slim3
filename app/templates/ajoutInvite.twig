@@ -4,7 +4,7 @@
     <div class="column is-6-desktop is-offset-3-desktop is-10-mobile is-offset-1-mobile">
         <div style="text-align: center">
             <br>
-            <h3 style="color: #0F3780">{% if invite.nom %}Modification{% else %}Ajout{% endif %} d'un invité à une soirée</h3>
+            <h3 style="color: #0F3780">{% if invite.nom %}Modification{% else %}Ajout{% endif %} d'un invité à l'événement</h3>
             <br>
             <p style="color: #FF6A08">{% if invite.nom %}{% else %}Avant d'ajouter un invité, pensez à vérifier qu'il n'est pas présent dans le listing global.{% endif %}</p>
             <br>
@@ -75,7 +75,9 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control">
-                            <input class="input" type="tel" name="telMobile" required="required" value="{{ invite.telPortable }}">
+                            <input class="input" type="tel" name="telMobile" required="required" value="{{ invite.telPortable }}"
+                           pattern="(01|02|03|04|05|06|07|08|09)[ \.\-]?[0-9]{2}[ \.\-]?[0-9]{2}[ \.\-]?[0-9]{2}[ \.\-]?[0-9]{2}"
+                           title="10 chiffres uniquement">
                         </p>
                     </div>
                 </div>
@@ -111,7 +113,7 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control">
-                            <input class="input" type="text" name="fonction" required="required" value="{{ invite.fonction }}">
+                            <input class="input" type="text" name="fonction" value="{{ invite.fonction }}">
                         </p>
                     </div>
                 </div>
@@ -123,7 +125,8 @@
                 <div class="field-body">
                     <div class="field">
                         <p class="control">
-                            <input class="input" type="text" name="codeNaf" required="required" value="{{ invite.codeNaf }}">
+                            <input class="input" type="text" name="codeNaf" value="{{ invite.codeNaf }}"
+                                   pattern="[0-9]{4}[a-zA-Z]" title="Exemple 1111A">
                         </p>
                     </div>
                 </div>
@@ -136,11 +139,23 @@
                     <div class="field">
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnNon" name="btnClient" value="0" {% if invite.estClient != true %}checked{% endif %} />
+                                <input type="radio" id="btnNon" name="btnClient" value="0"
+                                {% if invite.estClient %}
+                                    {% if invite.estClient == false %}
+                                        checked
+                                    {% endif %}
+                                {% endif %}
+                                required/>
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnOui" name="btnClient" value="1" {% if invite.estClient %}checked{% endif %}/>
+                                <input type="radio" id="btnOui" name="btnClient" value="1"
+                                {% if invite.estClient %}
+                                    {% if invite.estClient == true %}
+                                        checked
+                                    {% endif %}
+                                {% endif %}
+                                />
                                 Oui
                             </label>
                         </p>
@@ -149,17 +164,28 @@
             </div>
             <div class="field is-horizontal">
                 <div class="field-label is-normal" >
-                    <label class="label" style="margin-top: -7px">Présent :</label>
+                    <label class="label" style="margin-top: -7px">Participe :</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnNon" name="btnParticipe" value="0" {% if invite.reponse.participe != true %}checked{% endif %} />
+                                <input type="radio" id="btnNon" name="btnParticipe" value="0"
+                                {% if invite.reponse.participe %}
+                                    {% if invite.reponse.participe == false %}
+                                        checked
+                                    {% endif %}
+                                {% endif %}
+                               required/>
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnOui" name="btnParticipe" value="1" {% if invite.reponse.participe %}checked{% endif %} />
+                                <input type="radio" id="btnOui" name="btnParticipe" value="1"
+                                    {% if invite.reponse.participe %}
+                                        {% if invite.reponse.participe == true %}
+                                            checked
+                                        {% endif %}
+                                    {% endif %}/>
                                 Oui
                             </label>
                         </p>
@@ -174,11 +200,22 @@
                     <div class="field">
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnNon" name="btnLinkConf" value="0" {% if invite.reponse.lienConf != true %}checked{% endif %} />
+                                <input type="radio" id="btnNon" name="btnLinkConf" value="0"
+                                {% if invite.reponse.lienConf %}
+                                    {% if invite.reponse.lienConf == false %}
+                                        checked
+                                    {% endif %}
+                                {% endif %}
+                                required/>
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnOui" name="btnLinkConf" value="1" {% if invite.reponse.lienConf %}checked{% endif %} />
+                                <input type="radio" id="btnOui" name="btnLinkConf" value="1"
+                                {% if invite.reponse.lienConf %}
+                                    {% if invite.reponse.lienConf == true %}
+                                        checked
+                                    {% endif %}
+                                {% endif %}/>
                                 Oui
                             </label>
                         </p>

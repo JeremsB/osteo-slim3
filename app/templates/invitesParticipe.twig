@@ -2,8 +2,9 @@
 {% block content %}
     <br>
     <div style="text-align: center;" class="table-responsive" id="div">
-        Nombre d'invités souhaitant le lien de la conférence : {{ nbLiens }}
-        <br />
+        {% if nbInvites %}Nombre d'invités : {{ nbInvites }}
+        <br />{% endif %}
+        Nombre de participants : {{ nbParticipants }} / {{ jauge }}
         <br />
         <table class="table" id="example">
             <thead style="font-size: 14px;">
@@ -16,7 +17,7 @@
                     <th>Entreprise</th>
                     <th>Fonction</th>
                     <th><abbr title="Secteur d'activité">Code NAF</abbr></th>
-                    <th>Lien</th>
+                    <th>Participe</th>
                     <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
                 </tr>
             </thead>
@@ -39,20 +40,22 @@
                     <td>{{ invite.fonction }}</td>
                     <td>{{ invite.codeNaf }}</td>
                     <td style="text-align: center">
-                        {%  if invite.getReponse().lienConf is null %}
-                            {{ invite.getReponse().lienConf }}
+                        {%  if invite.getReponse().participe is null %}
+                            {{ invite.getReponse().participe }}
                             <span class="icon has-text-info">
-                                    <i class="fas fa-question"></i>
-                                </span>
-                        {% else %}
-                            {%  if invite.getReponse().lienConf == 1 %}
-                                <span class="icon has-text-success">
-                                <i class="fas fa-check"></i>
+                                <i class="fas fa-question"></i>
                             </span>
+                        {% else %}
+                            {%  if invite.getReponse().participe == 1 %}
+                                <span class="icon has-text-success">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span style="display: none">{{ invite.getReponse().participe }}</span>
                             {% else %}
                                 <span class="icon has-text-danger">
                                     <i class="fas fa-ban"></i>
                                 </span>
+                                <span  style="display: none">{{ invite.getReponse().participe }}</span>
                             {% endif %}
                         {% endif %}
                     </td>
@@ -102,14 +105,14 @@
                     aria: {
                         sortAscending: ": activer pour trier la colonne par ordre croissant",
                         sortDescending: ": activer pour trier la colonne par ordre décroissant"
-                    },
+                    }
                 },
                 dom: 'Bfrtip',
                 buttons: [
                     {
                         extend: 'csv',
                         //Name the CSV
-                        filename: 'entreprendre2024_invites_lien',
+                        filename: 'entreprendre2024_invites_particpants',
                         charset: 'UTF-8',
                         bom: true,
                         text: 'Exporter en CSV',

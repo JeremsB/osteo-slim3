@@ -95,7 +95,9 @@ class InviteDao
     public function suppInvite($id){
         $array = ['invitesId' => $id];
         $invite = $this->em->getRepository('App\Model\JoInvites')->findOneBy($array);
+        $invite->setReponse(null);
         $reponse = $invite->getReponse();
+
         //echo $reponse->getPresent();
         if($reponse){
             $reponse->setSuppr(true);
@@ -107,6 +109,19 @@ class InviteDao
         }
         $invite->setReponse($reponse);
         $this->em->persist($invite);
+        try {
+            $this->em->flush();
+        } catch (OptimisticLockException $e) {
+        }
+    }
+
+    public function suppReponse($id){
+        $array = ['invitesId' => $id];
+        $invite = $this->em->getRepository('App\Model\JoInvites')->findOneBy($array);
+        $reponse = $invite->getReponse();
+        $invite->setReponse(null);
+        $this->em->persist($invite);
+        $this->em->remove($reponse);
         try {
             $this->em->flush();
         } catch (OptimisticLockException $e) {

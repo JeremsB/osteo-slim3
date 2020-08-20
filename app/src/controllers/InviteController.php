@@ -111,7 +111,7 @@ class InviteController extends BaseController
     {
         $list = $this->inviteDao->getParticipant();
         $nbParticipants = $this->reponseDao->countPresent();
-        $this->view->render($response, 'invites.twig',['invites' => $list, 'nbParticipants' => $nbParticipants, 'jauge' => Constants::JAUGE]);
+        $this->view->render($response, 'invitesParticipe.twig',['invites' => $list, 'nbParticipants' => $nbParticipants, 'jauge' => Constants::JAUGE]);
         return $response;
     }
     public function refus(Request $request, Response $response, $args)
@@ -160,28 +160,34 @@ class InviteController extends BaseController
 
         $this->inviteDao->saveInviteAdmin($joInvite);
 
-        if($participe==1) {
-            $reponse = $joInvite->getReponse();
-            if (!$reponse) {
-                $reponse = new JoReponses();
-            }
-            $reponse->setParticipe($request->getParam('btnParticipe'));
-            $reponse->setLienConf($request->getParam('btnLinkConf'));
-            $reponse->setInvites($joInvite);
-
-            $reponse = $this->inviteDao->saveReponse($reponse);
-            $joInvite->setReponse($reponse);
+        $reponse = $joInvite->getReponse();
+        if (!$reponse) {
+            $reponse = new JoReponses();
         }
+        $reponse->setParticipe($request->getParam('btnParticipe'));
+        $reponse->setLienConf($request->getParam('btnLinkConf'));
+        $reponse->setSuppr(null);
+        $reponse->setInvites($joInvite);
+
+        $reponse = $this->inviteDao->saveReponse($reponse);
+        $joInvite->setReponse($reponse);
+
         $this->inviteDao->saveInviteAdmin($joInvite);
 
         //Envois de mail
         //Configuration du SMTP acces
         $mailSend = new MailSend();
-        $mailSend->sendMail($joInvite->getEmail(),$joInvite,'magnificat','magnificat*35830');
+        if ($request->getParam('btnParticipe') == true) {
+            $mailSend->sendMail($joInvite->getEmail(), $joInvite, 'magnificat', 'magnificat*35830');
+            return $response->withRedirect($this->router->pathFor('participant'));
+        } else if ($request->getParam('btnLinkConf') == true) {
+            $mailSend->sendMailLien($joInvite->getEmail(), $joInvite, 'magnificat', 'magnificat*35830');
+            return $response->withRedirect($this->router->pathFor('invitesLien'));
+        }
         return $response->withRedirect($this->router->pathFor('invite'));
     }
     public function suppInvite(Request $request, Response $response, $args){
-        $this->inviteDao->suppInvite($args["id"]);
+        $this->inviteDao->suppReponse($args["id"]);
         return $response->withRedirect($this->router->pathFor('invite'));
     }
 }
