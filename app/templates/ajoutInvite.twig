@@ -4,9 +4,9 @@
     <div class="column is-6-desktop is-offset-3-desktop is-10-mobile is-offset-1-mobile">
         <div style="text-align: center">
             <br>
-            <h3 style="color: #0F3780">{% if invite.nom %}Modification{% else %}Ajout{% endif %} d'un invité à l'événement</h3>
+            <h3 style="color: #0F3780">{% if invite %}Modification{% else %}Ajout{% endif %} d'un invité à l'événement</h3>
             <br>
-            <p style="color: #FF6A08">{% if invite.nom %}{% else %}Avant d'ajouter un invité, pensez à vérifier qu'il n'est pas présent dans le listing global.{% endif %}</p>
+            <p style="color: #FF6A08">{% if invite %}{% else %}Avant d'ajouter un invité, pensez à vérifier qu'il n'est pas présent dans le listing global.{% endif %}</p>
             <br>
         </div>
         <form action="{{ path_for('ajoutInvite') }}" method="post">
@@ -170,7 +170,7 @@
                     <div class="field">
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnNon" name="btnParticipe" value="0"
+                                <input type="radio" id="btnNon" name="btnParticipe" value="0" onclick="showLien();"
                                 {% if invite.reponse.participe %}
                                     {% if invite.reponse.participe == false %}
                                         checked
@@ -180,7 +180,7 @@
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnOui" name="btnParticipe" value="1"
+                                <input type="radio" id="btnOui" name="btnParticipe" value="1" onclick="hideLien();"
                                     {% if invite.reponse.participe %}
                                         {% if invite.reponse.participe == true %}
                                             checked
@@ -192,15 +192,15 @@
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal">
+            <div class="field is-horizontal" id="div-lien" style="display: none">
                 <div class="field-label is-normal" >
-                    <label class="label" style="margin-top: -7px">Lien conférence :</label>
+                    <label class="label" style="margin-top: -7px">Lien&nbsp;:</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnNon" name="btnLinkConf" value="0"
+                                <input type="radio" id="btnNonLien" name="btnLinkConf" value="0"
                                 {% if invite.reponse.lienConf %}
                                     {% if invite.reponse.lienConf == false %}
                                         checked
@@ -210,7 +210,7 @@
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
-                                <input type="radio" id="btnOui" name="btnLinkConf" value="1"
+                                <input type="radio" id="btnOuiLien" name="btnLinkConf" value="1"
                                 {% if invite.reponse.lienConf %}
                                     {% if invite.reponse.lienConf == true %}
                                         checked
@@ -225,31 +225,25 @@
 
             <div style="text-align: center">
                 <button class="button is-info" type="submit" style="background-color: #2E4094;">
-                    Ajouter
+                    {% if invite %}Modifier{% else %}Ajouter{% endif %}
                 </button>
             </div>
         </form>
     </div>
 </div>
     <script>
-        /*function displayOff(){
-            document.getElementById('divAccompagnant').style.display ='none';
-            document.getElementById('acc_nom').required=false;
-            document.getElementById('acc_prenom').required=false;
-            document.getElementById('acc_email').required=false;
-            document.getElementById('acc_tel').required=false;
-            document.getElementById('acc_cp').required=false;
-            document.getElementById('acc_ville').required=false;
+        function showLien () {
+            if (window.matchMedia("(max-width: 450px)").matches) {
+                document.getElementById("div-lien").style.display = "block";
+            } else {
+                document.getElementById("div-lien").style.display = "flex";
+            }
+            document.getElementById("btnNonLien").checked = false;
         }
-        function displayOn(){
-            document.getElementById('divAccompagnant').style.display = 'block';
-            document.getElementById('acc_nom').required=true;
-            document.getElementById('acc_prenom').required=true;
-            document.getElementById('acc_email').required=true;
-            document.getElementById('acc_tel').required=true;
-            document.getElementById('acc_cp').required=true;
-            document.getElementById('acc_ville').required=true;
-        }*/
+        function hideLien () {
+            document.getElementById("div-lien").style.display = "none";
+            document.getElementById("btnNonLien").checked = true;
+        }
     </script>
 {% endblock %}
 

@@ -16,7 +16,6 @@
                     <th>Entreprise</th>
                     <th>Fonction</th>
                     <th><abbr title="Secteur d'activité">Code NAF</abbr></th>
-                    <th>Lien</th>
                     <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
                 </tr>
             </thead>
@@ -38,24 +37,6 @@
                     <td>{{ invite.entreprise }}</td>
                     <td>{{ invite.fonction }}</td>
                     <td>{{ invite.codeNaf }}</td>
-                    <td style="text-align: center">
-                        {%  if invite.getReponse().lienConf is null %}
-                            {{ invite.getReponse().lienConf }}
-                            <span class="icon has-text-info">
-                                    <i class="fas fa-question"></i>
-                                </span>
-                        {% else %}
-                            {%  if invite.getReponse().lienConf == 1 %}
-                                <span class="icon has-text-success">
-                                <i class="fas fa-check"></i>
-                            </span>
-                            {% else %}
-                                <span class="icon has-text-danger">
-                                    <i class="fas fa-ban"></i>
-                                </span>
-                            {% endif %}
-                        {% endif %}
-                    </td>
                     <td>
                         <a href='{{ path_for('getInvite', { 'id': invite.invitesId}) }}'>
                             <abbr title="Modifier">

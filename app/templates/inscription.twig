@@ -210,7 +210,7 @@
                                                         &nbsp
                                                         &nbsp
                                                         <label class="label-check" style="vertical-align: bottom;color:white">
-                                                            <input type="checkbox" id="btnNon" name="lienConf" value="0" class="chb_lien" checked/>
+                                                            <input type="checkbox" id="btnNon" name="lienConf" value="0" class="chb_lien" {% if nbParticipants >= jauge %}{% else %}checked{% endif %}/>
                                                             Non<span class="checkmark"></span>
                                                         </label>
                                                     </p>
