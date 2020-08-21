@@ -16,7 +16,9 @@
                     <th>Téléphone</th>
                     <th>Entreprise</th>
                     <th>Fonction</th>
-                    <th><abbr title="Secteur d'activité">Code NAF</abbr></th>
+                    <th><abbr title="Code NAF">Code NAF</abbr></th>
+                    <th>Agence</th>
+                    <th>Conseiller</th>
                     <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
                 </tr>
             </thead>
@@ -38,6 +40,8 @@
                     <td>{{ invite.entreprise }}</td>
                     <td>{{ invite.fonction }}</td>
                     <td>{{ invite.codeNaf }}</td>
+                    <td>{{ invite.agence }}</td>
+                    <td>{{ invite.conseiller }}</td>
                     <td>
                         <a href='{{ path_for('getInvite', { 'id': invite.invitesId}) }}'>
                             <abbr title="Modifier">
@@ -97,7 +101,7 @@
                         text: 'Exporter en CSV',
                         fieldSeparator: ';',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
                         },
                     }
                 ]

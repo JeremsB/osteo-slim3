@@ -13,6 +13,8 @@
                 <th>Entreprise</th>
                 <th>Fonction</th>
                 <th><abbr title="Code NAF">Code NAF</abbr></th>
+                <th>Agence</th>
+                <th>Conseiller</th>
                 <th>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
             </tr>
             </thead>
@@ -34,6 +36,8 @@
                     <td>{{ invite.entreprise }}</td>
                     <td>{{ invite.fonction }}</td>
                     <td>{{ invite.codeNaf }}</td>
+                    <td>{{ invite.agence }}</td>
+                    <td>{{ invite.conseiller }}</td>
                     <td>
                         <a href='{{ path_for('getInvite', { 'id': invite.invitesId}) }}'>
                             <abbr title="Modifier">

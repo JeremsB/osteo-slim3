@@ -103,6 +103,20 @@ class JoInvites
     private $hash;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="AGENCE", type="string", nullable=true)
+     */
+    private $agence;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="CONSEILLER", type="string", nullable=true)
+     */
+    private $conseiller;
+
+    /**
      * Get invitesId
      *
      * @return integer
@@ -374,6 +388,54 @@ class JoInvites
     public function getHash()
     {
         return $this->hash;
+    }
+
+    /**
+     * Set agence
+     *
+     * @param string $agence
+     *
+     * @return JoInvites
+     */
+    public function setAgence($agence)
+    {
+        $this->agence = $agence;
+
+        return $this;
+    }
+
+    /**
+     * Get agence
+     *
+     * @return string
+     */
+    public function getAgence()
+    {
+        return $this->agence;
+    }
+
+    /**
+     * Set conseiller
+     *
+     * @param string $conseiller
+     *
+     * @return JoInvites
+     */
+    public function setConseiller($conseiller)
+    {
+        $this->conseiller = $conseiller;
+
+        return $this;
+    }
+
+    /**
+     * Get conseiller
+     *
+     * @return string
+     */
+    public function getConseiller()
+    {
+        return $this->conseiller;
     }
 
 }

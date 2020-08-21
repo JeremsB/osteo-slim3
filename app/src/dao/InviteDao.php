@@ -9,7 +9,6 @@
 namespace App\Dao;
 
 
-use App\Model\AgepReponses;
 use App\Model\JoReponses;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
@@ -46,11 +45,6 @@ class InviteDao
         $array = ['hash' => $hash];
         $invite = $this->em->getRepository('App\Model\JoInvites')->findOneBy($array);
         return $invite;
-    }
-    public function getAccompagnant($id){
-        $array = ['invites' => $id];
-        $reponse = $this->em->getRepository('App\Model\AgepReponses')->findOneBy($array);
-        return $reponse;
     }
 
     public function getParticipant(){

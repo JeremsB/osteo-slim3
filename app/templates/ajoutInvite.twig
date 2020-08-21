@@ -140,12 +140,12 @@
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
                                 <input type="radio" id="btnNon" name="btnClient" value="0"
-                                {% if invite.estClient %}
+                                {% if invite %}
                                     {% if invite.estClient == false %}
                                         checked
                                     {% endif %}
                                 {% endif %}
-                                required/>
+                                {% if invite %}{% else %}required{% endif %}/>
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
@@ -171,28 +171,27 @@
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
                                 <input type="radio" id="btnNon" name="btnParticipe" value="0" onclick="showLien();"
-                                {% if invite.reponse.participe %}
-                                    {% if invite.reponse.participe == false %}
-                                        checked
+                                    {% if invite.reponse %}
+                                        {% if invite.reponse.participe == false %}
+                                            checked
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
-                               required/>
+                                {% if invite %}{% else %}required{% endif %}/>
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">
                                 <input type="radio" id="btnOui" name="btnParticipe" value="1" onclick="hideLien();"
-                                    {% if invite.reponse.participe %}
-                                        {% if invite.reponse.participe == true %}
-                                            checked
-                                        {% endif %}
-                                    {% endif %}/>
+                                    {% if invite.reponse.participe == true %}
+                                        checked
+                                    {% endif %}
+                                    />
                                 Oui
                             </label>
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="field is-horizontal" id="div-lien" style="display: none">
+            <div class="field is-horizontal" id="div-lien" {% if invite.reponse.lienConf == true %}{% else %}style="display: none"{% endif %}>
                 <div class="field-label is-normal" >
                     <label class="label" style="margin-top: -7px">Lien&nbsp;:</label>
                 </div>
@@ -201,12 +200,12 @@
                         <p class="control">
                             <label class="radio" style="vertical-align: bottom">
                                 <input type="radio" id="btnNonLien" name="btnLinkConf" value="0"
-                                {% if invite.reponse.lienConf %}
+                                {% if invite.reponse %}
                                     {% if invite.reponse.lienConf == false %}
                                         checked
                                     {% endif %}
                                 {% endif %}
-                                required/>
+                                {% if invite %}{% else %}required{% endif %}/>
                                 Non
                             </label>
                             <label class="radio" style="vertical-align: bottom">

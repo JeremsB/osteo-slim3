@@ -34,7 +34,6 @@ class InviteController extends BaseController
     public function dispatchInscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
-        $nbPresent = 83;
         /*if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
         }else{*/

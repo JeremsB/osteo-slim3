@@ -14,7 +14,7 @@ $app->get('/testMailMagni', 'App\Controller\ToolsController:testMailMagni')->set
 $app->get('/testConfirme', 'App\Controller\ToolsController:testConfirme')->setName('testConfirme');
 $app->get('/testRefus', 'App\Controller\ToolsController:testRefus')->setName('testRefus');
 $app->get('/mail', 'App\Controller\ToolsController:mail')->setName('mail');
-$app->get('/hash', 'App\Controller\ToolsController:generateHash')->setName('hash');
+//$app->get('/hash', 'App\Controller\ToolsController:generateHash')->setName('hash');
 
 $app->group('/secure', function () {
     $this->get('/invite', 'App\Controller\InviteController:invite')->setName('invite');
