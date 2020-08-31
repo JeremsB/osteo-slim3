@@ -36,7 +36,7 @@ class MailSend
 
             //Recipients
             $mail->setFrom('invitation@bpgo-entreprendre2024.fr', 'BPGO ENTREPRENDRE 2024');
-            $mail->addAddress($adresse, 'User');
+            $mail->addAddress($adresse, $invite->getPrenom().' '.$invite->getNom());
 
             //Attachments
             /*$pdfCreator = new PdfCreator();
@@ -323,7 +323,7 @@ class MailSend
 
             //Recipients
             $mail->setFrom('invitation@bpgo-entreprendre2024.fr', 'BPGO ENTREPRENDRE 2024');
-            $mail->addAddress($adresse, 'User');
+            $mail->addAddress($adresse, $invite->getPrenom().' '.$invite->getNom());
 
             //Attachments
             /*$pdfCreator = new PdfCreator();
