@@ -7,7 +7,8 @@ $app->get('/suivi', 'App\Controller\LoginController:dispatch')
 $app->post('/', 'App\Controller\LoginController:login')
     ->setName('checkLogin');
 //$app->get('/pdf/{id}', 'App\Controller\ToolsController:dispatchPdf')->setName('pdf');
-$app->get('/inscription/{id}', 'App\Controller\InviteController:dispatchInscription')->setName('inscription');
+$app->get('/inscription/{id}', 'App\Controller\InviteController:dispatchInscriptionHash')->setName('inscription');
+$app->get('/inscription', 'App\Controller\InviteController:dispatchInscriptionVierge')->setName('inscription');
 $app->post('/inscription', 'App\Controller\InviteController:inscription')->setName('inscriptio');
 $app->get('/testMailDoro', 'App\Controller\ToolsController:testMailDoro')->setName('testMailDoro');
 $app->get('/testMailMagni', 'App\Controller\ToolsController:testMailMagni')->setName('testMailMagni');

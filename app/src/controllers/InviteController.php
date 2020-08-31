@@ -31,7 +31,7 @@ class InviteController extends BaseController
         $this->inviteDao = new InviteDao($this->em);
         $this->reponseDao = new ReponseDao($this->em);
     }
-    public function dispatchInscription(Request $request, Response $response, $args)
+    public function dispatchInscriptionHash(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
         /*if($nbPresent >= Constants::JAUGE) {
@@ -51,23 +51,45 @@ class InviteController extends BaseController
         //}
         return $response;
     }
+    public function dispatchInscriptionVierge(Request $request, Response $response, $args)
+    {
+        $nbPresent = $this->reponseDao->countPresent();
+        /*if($nbPresent >= Constants::JAUGE) {
+            $this->view->render($response, 'complet.twig');
+        }else{*/
+        $this->view->render($response, 'inscription.twig', ['jauge' => Constants::JAUGE, 'nbParticipants' => $nbPresent]);
+        //}
+        return $response;
+    }
     public function inscription(Request $request, Response $response, $args)
     {
         $nbPresent = $this->reponseDao->countPresent();
         /*if($nbPresent >= Constants::JAUGE) {
             $this->view->render($response, 'complet.twig');
         }else {*/
+        if ($request->getParam('hash') != null){
             $invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
-            $invite->setEmail($request->getParam('email'));
-            $invite->setPrenom($request->getParam('prenom'));
-            $invite->setNom($request->getParam('nom'));
-            $invite->setCiv($request->getParam('civ'));
-            $invite->setTelPortable($request->getParam('tel'));
-            $invite->setEntreprise($request->getParam('entreprise'));
-            $invite->setFonction($request->getParam('fonction'));
-            $invite->setCodeNaf($request->getParam('codeNaf'));
-            $invite->setEstClient($request->getParam('client'));
+        } else {
+            $invite = new JoInvites();
+        }
+            //$invite = $this->inviteDao->getInvitesByHash($request->getParam('hash'));
+        $invite->setEmail($request->getParam('email'));
+        $invite->setPrenom($request->getParam('prenom'));
+        $invite->setNom($request->getParam('nom'));
+        $invite->setCiv($request->getParam('civ'));
+        $invite->setTelPortable($request->getParam('tel'));
+        $invite->setEntreprise($request->getParam('entreprise'));
+        $invite->setFonction($request->getParam('fonction'));
+        $invite->setCodeNaf($request->getParam('codeNaf'));
+        $invite->setEstClient($request->getParam('client'));
+
+        $this->inviteDao->saveInvite($invite);
+
+        if ($request->getParam('hash') == null){
+            $hash = hash('whirlpool',$invite->getInvitesId());
+            $invite->setHash($hash);
             $this->inviteDao->saveInvite($invite);
+        }
 
             $reponse = $invite->getReponse();
             if (!$reponse) {
