@@ -1,6 +1,6 @@
 <?php
 // Routes
-$app->get('/', 'App\Controller\LoginController:dispatch404')
+$app->get('/', 'App\Controller\InviteController:dispatchInscriptionVierge')
     ->setName('home');
 $app->get('/suivi', 'App\Controller\LoginController:dispatch')
     ->setName('login');
